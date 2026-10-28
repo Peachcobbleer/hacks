@@ -1,664 +1,529 @@
-<title>Definitely Legit Solutions</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NULLROUTE OS – Hacking Strategy</title>
 <style>
-:root{color-scheme:dark;--line:#2a4c52;--text:#e9f2f0;--mute:#8da7a6;--green:#4fd37f;--amber:#f2b84b;--red:#ef5b5b;--mint:#dce8dc}
+:root{--g:#33ff99;--d:#1a7a4a;--w:#ff4d4d;--p:#07110d;--b:#031009;--y:#ffd24d;color-scheme:dark}
 *{box-sizing:border-box}
-html,body{margin:0}
-body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
-background:radial-gradient(1200px 700px at 30% 10%,#133c46 0,#0a1b20 55%,#050d10 100%);background-color:#050d10}
-#stage{display:flex;gap:24px;align-items:flex-start;justify-content:center;width:100%}
-#side{width:290px;display:flex;flex-direction:column;gap:14px;font-size:13px;line-height:1.45}
-.panel{background:rgba(10,28,33,.85);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
-.panel h3{margin:0 0 8px;font-size:12px;letter-spacing:.12em;color:var(--green)}
-.panel ul{margin:0;padding-left:18px;color:#c6d8d6}
-.panel li{margin:3px 0}
-.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:10px;padding:2px 8px;margin:2px 3px 0 0}
-.tag.p{background:#164a30;color:#7dffae}.tag.n{background:#561f23;color:#ff9a9a}.tag.z{background:#2a3b40;color:#b7c9c8}
-.beat{color:#5b7a7a}.beat.done{color:var(--green);font-weight:600}
-#win{width:433px;max-width:100%;background:#0c1f24;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px #1d4046}
-.titlebar{height:40px;background:#f3f5f5;color:#222;display:flex;align-items:center;padding:0 0 0 10px;gap:10px;font-size:15px;user-select:none}
-.titlebar .ico{width:24px;height:24px;border-radius:6px;background:#1f9d55;display:grid;place-items:center}
-.titlebar .ctl{margin-left:auto;display:flex}
-.titlebar .ctl span{width:42px;text-align:center;font-size:14px;color:#444;line-height:40px}
-.titlebar .ctl .x{color:#c33}
-.body{background:linear-gradient(180deg,#123138,#0a1a1f);padding:10px;min-height:690px;position:relative}
-.scr{display:none}.scr.on{display:block}
-.strip #aiBadge.off{color:var(--amber)}
-.strip{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.08em;color:var(--mute);margin:0 2px 6px;text-transform:uppercase}
-.card{background:#0f2429;border:1px solid var(--line);border-radius:6px}
-.trust{display:flex;align-items:center;gap:10px;padding:12px;font-weight:800;letter-spacing:.04em;font-size:14px}
-.trust .st{font-size:12px;font-weight:700;min-width:78px}
-.bar{flex:1;height:8px;background:#27424a;border-radius:4px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--green);width:40%;transition:width .5s,background .5s}
-.trust .pc{font-size:17px;min-width:42px;text-align:right}
-.obj{margin-top:10px;background:var(--mint);color:#16302b;border-left:4px solid var(--green);border-radius:4px;padding:13px 15px}
-.obj .r{display:flex;justify-content:space-between;align-items:baseline}
-.obj b{font-size:18px}.obj span.o{font-size:16px;font-weight:600}
-.obj .pb{height:5px;background:#b9c9bb;border-radius:3px;margin:11px 0 9px;overflow:hidden}
-.obj .pb i{display:block;height:100%;width:0;background:#2c7a55;transition:width .5s}
-.obj small{font-size:13px;color:#2d4640}
-.caller{margin-top:10px;overflow:hidden}
-.caller .h{text-align:center;padding:11px 8px 9px;background:#12303a;border-bottom:1px solid var(--line)}
-.caller .h b{font-size:17px}.caller .h div{font-size:12px;color:var(--mute);margin-top:3px}
-.pic{height:138px;position:relative;display:flex;align-items:center;justify-content:center;
-background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(180deg,#3d6b72,#2c5158)}
-.pic::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:#12303a}
-.voice{position:absolute;left:12px;top:12px;background:rgba(10,30,34,.8);border:1px solid #4d7279;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.1em;padding:3px 8px;z-index:3}
-.pic svg{height:120px;position:absolute;bottom:2px;z-index:2}
-.wave{position:absolute;bottom:11px;left:0;right:0;display:flex;justify-content:center;gap:5px;z-index:3}
-.wave i{width:4px;height:4px;border-radius:50%;background:#5f8d93;display:block}
-.talk .wave i{animation:wv .5s ease-in-out infinite alternate;background:#8ff0b0}
-.wave i:nth-child(odd){animation-delay:.12s}.wave i:nth-child(3n){animation-delay:.25s}
-@keyframes wv{from{transform:scaleY(1)}to{transform:scaleY(3.4)}}
-.eyes{transform-box:fill-box;transform-origin:center;animation:blink 4s infinite}
-@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
-.talk .mouth{transform-box:fill-box;transform-origin:center;animation:mo .22s ease-in-out infinite alternate}
-@keyframes mo{from{transform:scaleY(.6)}to{transform:scaleY(1.5)}}
-.chat{margin-top:10px;height:152px;overflow-y:auto;padding:8px;background:#0a1a1f;border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;gap:7px}
-.chat::-webkit-scrollbar{width:8px}.chat::-webkit-scrollbar-thumb{background:#2f565c;border-radius:4px}
-.msg{max-width:92%;padding:8px 12px;border-radius:7px;font-size:14px;line-height:1.4}
-.msg .who{font-size:12px;font-weight:700;margin-bottom:3px}
-.msg.c{background:#22476b;border:1px solid #2d5b88;align-self:flex-start}.msg.c .who{color:#7fb8f0}
-.msg.y{background:#1d5a4a;border:1px solid #2a7a64;align-self:flex-end}.msg.y .who{color:#8be6c2}
-.msg.s{align-self:center;background:#3b3316;border:1px solid #6b5b1d;color:#ffe08a;font-size:12.5px;text-align:center}
-.tags{margin-top:5px}
-.dots span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:#9cc4ea;animation:dt 1s infinite}
-.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
-@keyframes dt{0%,100%{opacity:.25}50%{opacity:1}}
-.meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--mute);margin:9px 3px 7px}
-.meta .low{color:var(--red);font-weight:700}
-.q{display:flex;justify-content:space-between;gap:10px;width:100%;margin-bottom:7px;background:#1b3a43;border:1px solid var(--line);border-radius:6px;padding:10px 12px;color:var(--text);font:inherit;font-size:14px;font-weight:700;cursor:pointer;text-align:left}
-.q:hover{background:#224a55}.q em{font-weight:400;color:#8ea9a8;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.q span{white-space:nowrap}
-.inp{display:flex;align-items:center;background:#0d2227;border:1px solid var(--line);border-radius:6px;padding:0 6px 0 12px;margin-top:2px}
-.inp input{flex:1;background:none;border:0;outline:0;color:var(--text);font:inherit;font-size:14px;padding:12px 0}
-.inp input::placeholder{color:#78918f}
-.inp button{background:none;border:0;color:#8ea9a8;cursor:pointer;padding:8px}.inp button:hover{color:var(--green)}
-.foot{display:flex;justify-content:space-between;align-items:center;margin-top:9px;font-size:12px}
-.link{background:none;border:0;color:#8ea9a8;font:inherit;cursor:pointer;padding:2px}
-.hang{background:#7a2326;border:1px solid #a33;color:#fff;font:inherit;font-weight:700;font-size:13px;padding:7px 14px;border-radius:16px;cursor:pointer}
-.hang.go{background:#1f9d55;border-color:#4fd37f;animation:pl 1s infinite}
-@keyframes pl{0%,100%{box-shadow:0 0 0 0 rgba(79,211,127,.7)}50%{box-shadow:0 0 0 9px rgba(79,211,127,0)}}
-.center{text-align:center;padding:22px 14px}
-.center h1{font-size:25px;margin:6px 0 2px;line-height:1.15}
-.center .sub{color:var(--green);font-size:12px;letter-spacing:.2em;font-weight:700}
-.center p{color:#bcd1cf;font-size:14px;line-height:1.5}
-.big{display:inline-block;background:#1f9d55;color:#fff;border:0;font:inherit;font-weight:800;font-size:16px;padding:13px 30px;border-radius:26px;cursor:pointer;margin-top:10px}
-.big:hover{background:#25b862}
-.fine{font-size:11px!important;color:#6f8a89!important;margin-top:20px}
-.ring{width:110px;height:110px;border-radius:50%;background:#1f9d55;margin:36px auto 18px;display:grid;place-items:center;animation:rg 1s infinite}
-@keyframes rg{0%{box-shadow:0 0 0 0 rgba(79,211,127,.6);transform:rotate(-8deg)}50%{transform:rotate(8deg)}100%{box-shadow:0 0 0 38px rgba(79,211,127,0);transform:rotate(-8deg)}}
-#over{position:absolute;inset:0;background:rgba(5,14,17,.93);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
-#over.on{display:flex}
-.res{width:100%;text-align:center}
-.res .ic{font-size:50px}.res h2{margin:6px 0 4px;font-size:25px}
-.res .note{color:#c4d6d4;font-size:14px;line-height:1.5;margin:8px 4px}
-.stats{display:flex;gap:8px;margin:14px 0}.stats div{flex:1;background:#12303a;border:1px solid var(--line);border-radius:6px;padding:9px 4px;font-size:12px;color:var(--mute)}
-.stats b{display:block;font-size:19px;color:var(--text)}
-.win h2{color:var(--green)}.lose h2{color:var(--red)}
-@media(max-width:860px){#side{display:none}}
-</style>
-<div id="stage">
-<div id="side">
- <div class="panel"><h3>EMPLOYEE HANDBOOK</h3><ul>
-  <li>Customers call to complain. Your job: <b>turn the complaint into a sale</b>.</li>
-  <li>Listen first, pitch later. Pitching below ~65% trust backfires.</li>
-  <li>Reach <b>80% trust</b> and hang up before you ruin it.</li>
-  <li>Everyone is different. Read the line under their name.</li>
-  <li>Threats, shouting and rudeness will end the call.</li>
-  <li>“Case steps” are hidden rapport moments. Each gives a trust boost.</li></ul></div>
- <div class="panel"><h3>SENTIMENT ANALYZER™ v0.9</h3><div id="ana" style="color:#8da7a6">Waiting for your first message…</div>
-  <div style="margin-top:10px" id="beats"></div></div>
+html,body{height:100%;margin:0;background:#020605;color:var(--g);font:14px/1.4 "Courier New",monospace;overflow:hidden}
+canvas#c{display:block;width:100%;height:100%}
+#hint{position:fixed;left:0;right:0;bottom:16px;text-align:center;color:var(--g);text-shadow:0 0 6px #000;pointer-events:none}
+button,select,input{background:var(--p);color:var(--g);border:1px solid var(--d);font:inherit;padding:4px 8px}
+button{cursor:pointer}button:hover,button.on{background:var(--d);color:#fff}
+button:disabled{opacity:.4;cursor:default}
+a{color:#7fd;cursor:pointer;text-decoration:underline}
+.w{color:var(--w)}.m{color:#7aa}.y{color:var(--y)}
+/* desktop shell */
+#gui{position:fixed;inset:0;display:none;flex-direction:column;background:#031009;padding-top:env(safe-area-inset-top,0)}
+#desk{flex:1;position:relative;overflow:hidden;min-height:0;background:
+ radial-gradient(circle at 70% 20%,#0b3a24 0,transparent 55%),
+ repeating-linear-gradient(0deg,#052014 0 1px,transparent 1px 40px),
+ repeating-linear-gradient(90deg,#052014 0 1px,transparent 1px 40px),#031009}
+#icons{font-size:12px;position:absolute;left:8px;top:8px;display:flex;flex-direction:column;flex-wrap:wrap;gap:4px;max-height:calc(100% - 16px);align-content:flex-start}
+.dic{width:7em;text-align:center;padding:.5em .17em;cursor:pointer;color:var(--g);font-size:1em;position:relative;border:1px solid transparent}
+.dic:hover{border-color:var(--d);background:#0a2a1a}.dic .i{font-size:2.17em;display:block}
+.bdg{position:absolute;top:2px;right:12px;background:var(--w);color:#fff;border-radius:9px;padding:0 5px;font-size:11px}
+#wins{position:absolute;inset:0;pointer-events:none}
+#wins>.win{pointer-events:auto}
+.win{position:absolute;display:flex;flex-direction:column;background:var(--b);border:1px solid var(--d);box-shadow:0 4px 18px #000b;min-width:280px;min-height:160px;resize:both;overflow:hidden}
+.win.f{border-color:var(--g);box-shadow:0 4px 22px #000,0 0 10px #33ff9944}
+.wt{display:flex;justify-content:space-between;align-items:center;background:#0a2a1a;padding:3px 6px;cursor:move;user-select:none;touch-action:none;border-bottom:1px solid var(--d)}
+.win.f .wt{background:#14502f;color:#fff}
+.wc button{padding:0 7px;margin-left:3px}
+.wb{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column}
+.pad{padding:8px;display:flex;flex-direction:column;gap:6px}
+.bar2{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:6px;border-bottom:1px solid var(--d)}
+#task{display:flex;gap:6px;align-items:center;border-top:1px solid var(--d);background:#051a10;padding:4px 6px;padding-bottom:calc(4px + env(safe-area-inset-bottom,0px))}
+#tbtn{display:flex;gap:4px;flex:1;overflow:hidden}
+#tbtn button{max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#tray{display:flex;gap:8px;align-items:center;white-space:nowrap}
+#trb{width:90px;height:10px;border:1px solid var(--d)}#trf{height:100%;width:0;background:var(--g)}
+#smenu{position:absolute;left:4px;bottom:44px;background:#051a10;border:1px solid var(--g);display:none;flex-direction:column;z-index:99999;min-width:190px}
+#smenu button{text-align:left;border:0;border-bottom:1px solid var(--d)}
+#toasts{position:fixed;right:10px;top:10px;display:flex;flex-direction:column;gap:6px;z-index:100000;pointer-events:none}
+.toast{background:#051a10;border:1px solid var(--g);padding:6px 10px;max-width:300px;box-shadow:0 0 10px #000}
+#end{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;font-size:22px;text-align:center;z-index:100001}
+/* terminal */
+.tout{flex:1;overflow:auto;white-space:pre-wrap;word-break:break-word;padding:6px}
+.tin{width:100%;border-left:0;border-right:0;border-bottom:0}
+/* maps */
+canvas.mp{width:100%;max-width:760px;border:1px solid var(--d);cursor:crosshair;align-self:flex-start}
+/* lists */
+.it{padding:3px 4px;border-bottom:1px solid #0f3a24;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.it:hover{background:#0a2a1a}.it.sel{background:#14502f;color:#fff}
+.box{border:1px solid var(--d);padding:8px;background:var(--p)}
+table.tb{border-collapse:collapse;width:100%}table.tb td,table.tb th{border-bottom:1px solid #0f3a24;padding:2px 6px;text-align:left}
+/* file manager */
+.fm{display:flex;flex:1;min-height:0}.fside{width:130px;border-right:1px solid var(--d);display:flex;flex-direction:column;gap:2px;padding:4px}
+.fside button{text-align:left;border:0}.fmain{flex:1;min-width:0;display:flex;flex-direction:column}
+.flist{flex:1;overflow:auto}.fdet{border-top:1px solid var(--d);padding:6px;min-height:70px}
+/* browser */
+.bpage{flex:1;overflow:auto;padding:10px}.bpage h3,.bpage h4{margin:6px 0}
+/* mail */
+.ml{display:flex;flex:1;min-height:0}.mlist{width:42%;border-right:1px solid var(--d);overflow:auto}.mread{flex:1;padding:8px;overflow:auto;white-space:pre-wrap}
+.unr{font-weight:bold;color:#fff}
+/* net / monitor */
+.npk{flex:1;overflow:auto;font-size:12px}.pk{padding:1px 6px;white-space:nowrap}.pk.w{background:#2a0a0a}
+.nt{max-height:36%;overflow:auto;border-top:1px solid var(--d);padding:4px;font-size:12px}
+.mon{display:flex;gap:8px;padding:8px;flex-wrap:wrap}.mon .box{flex:1;min-width:200px}
+.bar{height:10px;border:1px solid var(--d);margin:2px 0 6px}.bar>div{height:100%;background:var(--g)}
+/* remote desktop guest */
+#vd{flex:1;display:none;flex-direction:column;min-height:0;border:1px solid var(--d);background:linear-gradient(135deg,#123a6b,#1d6fa5);margin:0 6px 6px}
+#vbar,#vtask{background:#0a1a2a;padding:4px 8px;color:#cfe}#vdesk{flex:1;position:relative;padding:10px;overflow:auto}
+.ic{display:inline-block;width:80px;text-align:center;color:#fff;cursor:pointer;margin-right:8px}
+.gw{display:none;position:absolute;left:100px;top:20px;right:20px;bottom:10px;background:#e8eef2;color:#111;border:2px solid #0a1a2a;overflow:auto}
+.gt{background:#1a4f80;color:#fff;padding:4px 8px;display:flex;justify-content:space-between}#fxl{padding:8px}
+.grow{padding:3px 0;border-bottom:1px solid #bcd}.gw button{color:#111;background:#cde}.gw .m{color:#456}
+.ugrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.ub{border:1px solid var(--d);background:var(--p);padding:6px;display:flex;flex-direction:column;gap:6px}.ub h4{margin:0}
+.un{border:1px solid var(--d);padding:6px;font-size:.9em;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.un.own{border-color:var(--g);background:#0a2a1a}.un.lk{opacity:.5}.un.btc{border-color:var(--y)}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="hint">Move the mouse to look around · click the monitor to log in</div>
+<div id="gui">
+ <div id="desk"><div id="icons"></div><div id="wins"></div></div>
+ <div id="smenu"></div>
+ <div id="task"><button id="start">⊞ NULL</button><div id="tbtn"></div>
+  <div id="tray"><b id="wl"></b><span>TRACE</span><div id="trb"><div id="trf"></div></div><span id="clk" class="m"></span><button id="snd" title="Toggle sound">🔊</button><button id="x">⏻ Stand up</button></div></div>
 </div>
-
-<div id="win">
- <div class="titlebar"><div class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.300.2 2.500.6 3.600.1.300 0 .700-.2 1z"/></svg></div>Phone<div class="ctl"><span>—</span><span>☐</span><span class="x">✕</span></div></div>
- <div class="body">
-
-  <div class="scr on" id="sTitle"><div class="center">
-    <div style="font-size:54px">📞</div>
-    <div class="sub">BILLING DEPARTMENT</div>
-    <h1>Definitely Legit<br>Solutions™</h1>
-    <p>Welcome, new hire! Customers are calling about mysterious charges. Calm them down, charm them, and <b>upsell them into oblivion</b>.</p>
-    <p>Type your replies. Our <i>highly advanced</i> sentiment AI judges every word. Reach <b>80% trust</b>, hang up, collect commission.</p>
-    <p>6 calls per shift. Ethics Department is out to lunch (permanently).</p>
-    <button class="big" id="bStart">Start Shift</button>
-    <p class="fine">Satire. In real life, pressuring people into purchases they don't need hurts them, and real scams are crimes. Report fraud at reportfraud.ftc.gov</p>
-  </div></div>
-
-  <div class="scr" id="sRing"><div class="center">
-    <div class="strip" style="justify-content:center" id="ringInfo"></div>
-    <div class="ring"><svg width="52" height="52" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.300.2 2.500.6 3.600.1.300 0 .700-.2 1z"/></svg></div>
-    <h1 style="font-size:22px">Incoming call…</h1>
-    <p>Caller ID: <b>Unknown</b><br>Reason: probably a refund request</p>
-    <button class="big" id="bAnswer">Answer</button>
-  </div></div>
-
-  <div class="scr" id="sCall">
-    <div class="strip"><span id="sCallNo">Call 1/6</span><span id="sSales">Sales 0 · $0</span></div>
-    <div class="card trust"><span>CALLER TRUST</span><span class="st" id="tSt">UNCERTAIN</span><div class="bar"><i id="tBar"></i></div><span class="pc" id="tPc">40%</span></div>
-    <div class="obj"><div class="r"><b>Call objective</b><span class="o" id="oTxt">Understand concerns</span></div>
-      <div class="pb"><i id="oBar"></i></div><small id="oSm">Suspicion 23% · Case steps 0/1</small></div>
-    <div class="card caller"><div class="h"><b id="cName">—</b><div id="cTag">—</div></div>
-      <div class="pic" id="pic"><div class="voice">● VOICE</div><div id="av"></div><div class="wave" id="wave"></div></div></div>
-    <div class="chat" id="chat"></div>
-    <div class="meta"><span id="pat">⏱ Patience 112s</span><span id="rule"></span></div>
-    <div id="chips"></div>
-    <div class="inp"><input id="in" maxlength="220" placeholder="Just say your response..." autocomplete="off"><button id="send" title="Send"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 3 3 10.5l7 3 3 7z"/><path d="M21 3 10 13.500"/></svg></button></div>
-    <div class="foot"><button class="link" id="bSnd">🔇 Sound off</button><button class="hang" id="bHang">☎ Hang up</button></div>
-  </div>
-
-  <div id="over"><div class="res" id="res"></div></div>
- </div>
-</div>
-</div>
-
+<div id="toasts"></div>
+<div id="end"><div id="et"></div><button onclick="location.reload()">Restart</button></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const $=s=>document.querySelector(s), clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), pick=a=>a[Math.floor(Math.random()*a.length)];
-const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-
-/* ---------- sound ---------- */
-let AC=null,snd=false,ringT=null;
-function tone(f,d=.12,type='sine',v=.05,delay=0){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime+delay;o.type=type;o.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(AC.destination);o.start(t);o.stop(t+d+.03)}catch(e){}}
-function ringOnce(){tone(880,.16,'square',.03);tone(660,.16,'square',.03,.2);tone(880,.16,'square',.03,.6);tone(660,.16,'square',.03,.8)}
-function say(text,P){if(!snd||!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.pitch=P.voice[0];u.rate=P.voice[1];speechSynthesis.speak(u)}catch(e){}}
-
-/* ---------- analyzer vocab ---------- */
-const RX={
- polite:/\b(please|thank you|thanks|thank|sorry|apologi[sz]e|apologies|appreciate|pleasure|kindly|madam|ma'am|sir|grateful|my bad)\b/g,
- empathy:/\b(understand|i hear you|frustrating|stressful|annoying|take your time|no worries|tell me more|listening|i'm here|here for you|must be|concern\w*|worried|that's (awful|terrible|rough)|that sounds)\b/g,
- flatter:/\b(wonderful|brilliant|smart|clever|wise|lovely|amazing|genius|impressive|legend|king|queen|champ|great|expert|sharp|sweet|fantastic|incredible)\b/g,
- pressure:/\b(hurry|immediately|urgent|urgently|limited time|last chance|act fast|today only|expires?|right now|don't miss|deadline|before it's too late|asap|running out|buy now|act now)\b/g,
- threat:/\b(lawsuit|sue|police|arrest|or else|you owe|owe us|jail|penalt(y|ies)|will be (closed|suspended)|collections|consequences|regret)\b/g,
- jargon:/\b(synergy|leverage|paradigm|bandwidth|stakeholders?|circle back|blockchain|quantum|disrupt\w*|kpi|ecosystem|scalable|deliverables?|touch base)\b/g,
- rude:/\b(shut up|stupid|idiot|dumb|moron|loser|crazy|hate you|whatever|boomer|damn|crap|hell|useless|pathetic|shut it|get lost)\b/g,
- proof:/\b(reference|ticket|case number|record|receipt|invoice|itemi[sz]ed|statement|documentation|confirm\w*|refund|credit|resolve\w*|solution|fix|escalat\w*|investigat\w*|look into|procedure|official|verif\w*)\b/g,
- casual:/\b(lol|haha+|lmao|bro|dude|yo|fr|no cap|gg|bruh|nah|yeah|yep|chill|vibe|sick|dope|noob|clutch|ngl)\b/g,
- formal:/\b(procedure|policy|regarding|accordance|henceforth|hereby|pursuant|aforementioned|kindly|esteemed|sir|madam|per our|terms)\b/g,
- correct:/\b(actually|you're wrong|that's wrong|incorrect|calm down|as i said|like i said)\b/g,
- pitch:/\b(offer|deal|package|plan|protection|warranty|subscription|buy|purchase|premium|upgrade|discount|sale|sign up|signup|membership|insurance|coverage|product|enroll|add[- ]on|bundle|guardian|nft)\b/g
+const $=s=>document.querySelector(s);
+/* ---------- audio (all synthesised, no files) ---------- */
+const AU={ctx:null,on:true,ok:false,hum:null};
+function ac(){if(!AU.ctx){try{AU.ctx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){return null}}if(AU.ctx.state==='suspended')AU.ctx.resume();return AU.ctx}
+function tone(f,d,type,v,t0,f2){const c=AU.on&&AU.ok&&ac();if(!c)return;const t=c.currentTime+(t0||0),o=c.createOscillator(),g=c.createGain();o.type=type||'square';o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);
+ g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.06,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.05)}
+function noise(d,v,t0,fl){const c=AU.on&&AU.ok&&ac();if(!c)return;const n=Math.max(1,c.sampleRate*d|0),buf=c.createBuffer(1,n,c.sampleRate),a=buf.getChannelData(0);for(let i=0;i<n;i++)a[i]=Math.random()*2-1;
+ const s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain(),t=c.currentTime+(t0||0);s.buffer=buf;f.type='lowpass';f.frequency.value=fl||2000;g.gain.setValueAtTime(v||.1,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(c.destination);s.start(t)}
+const SFX={
+ click(){tone(900,.04,'square',.03)},
+ key(){tone(450+Math.random()*350,.025,'square',.018)},
+ open(){tone(380,.09,'triangle',.06,0,760)},
+ close(){tone(700,.09,'triangle',.06,0,330)},
+ notify(){tone(880,.1,'sine',.08);tone(1320,.18,'sine',.07,.1)},
+ err(){tone(200,.22,'sawtooth',.07,0,110)},
+ tick(){tone(1300+Math.random()*300,.02,'square',.015)},
+ scan(){tone(250,.5,'sine',.06,0,1400);noise(.3,.03,.1,5000)},
+ success(){[523,659,784].forEach((f,i)=>tone(f,.12+i*.08,'square',.05,i*.1))},
+ loot(){tone(1000,.06,'square',.04);tone(1500,.1,'square',.04,.07)},
+ cash(){tone(1568,.08,'triangle',.08);tone(2093,.3,'triangle',.08,.08)},
+ buy(){tone(600,.07,'triangle',.07);tone(900,.1,'triangle',.07,.08)},
+ alarm(){[660,880,660,880].forEach((f,i)=>tone(f,.12,'sawtooth',.06,i*.15))},
+ boom(){noise(.9,.35,0,500);tone(90,.7,'sawtooth',.15,0,28)},
+ ransom(){[330,277,220,165].forEach((f,i)=>tone(f,.18,'sawtooth',.06,i*.14))},
+ install(){noise(.35,.06,0,3500);tone(300,.4,'square',.04,0,900)},
+ block(){tone(320,.08,'square',.05);noise(.1,.05,0,1500)},
+ login(){[392,523,659,784].forEach((f,i)=>tone(f,.14,'triangle',.07,i*.07))},
+ logoff(){[784,659,523,392].forEach((f,i)=>tone(f,.14,'triangle',.07,i*.07))},
+ gameover(){tone(440,1.4,'sawtooth',.1,0,55);noise(1.2,.15,0,800)}
 };
-const DW={polite:1,empathy:1.5,question:1,flatter:.8,pressure:-2.5,threat:-6,jargon:-1,rude:-5,proof:1,casual:0,formal:0,big:0,topic:2.5,correct:-2,pitchLike:1};
-const LBL={polite:'Polite',empathy:'Empathy',flatter:'Flattery',question:'Good question',pressure:'Pressure',threat:'Threat',jargon:'Buzzwords',rude:'Rude',proof:'Concrete help',casual:'Casual vibe',formal:'Formal tone',correct:'Contradicting',topic:'Shared interest',big:'Fancy words'};
+function sfx(n){try{AU.ok&&AU.on&&SFX[n]&&SFX[n]()}catch(e){}}
+function hum(){const c=AU.ok&&ac();if(!c)return;
+ if(!AU.hum){const g=c.createGain(),f=c.createBiquadFilter();f.type='lowpass';f.frequency.value=180;g.gain.value=0;[55,82.5,110.3].forEach((fr,i)=>{const o=c.createOscillator();o.type=i?'sine':'sawtooth';o.frequency.value=fr;o.connect(f);o.start()});f.connect(g);g.connect(c.destination);AU.hum=g}
+ const inGui=$('#gui').style.display==='flex';AU.hum.gain.setTargetAtTime(AU.on&&!S.over?(inGui?.012:.035):0,c.currentTime,.2)}
+addEventListener('pointerdown',e=>{if(!AU.ok){AU.ok=true;ac();hum()}if(e.target.closest&&e.target.closest('button,a,select'))sfx('click')},true);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const NA=['Helix','Orbital','Kestrel','Vantor','Dunmere','Nimbus','Quartz','Ardent','Solace','Granite','Vireo','Mantis'],NB=['Bank','Media','Labs','Freight','Grid','Logistics','Clinic','Studios','Holdings','Energy'];
+const FN=[['accounts.db',1],['payroll.xlsx',.8],['customers.csv',.9],['blueprints.cad',1.4],['emails.pst',.6],['source_code.zip',1.6],['contracts.pdf',.7],['passwords.kdbx',1.2]];
+const MODS={STEALTH:'evades antivirus',SIPHON:'noisy file extraction',RANSOM:'encrypts files, pays ₿',TROJAN:'silent extraction, beats L2 antivirus',DESTROYER:'bricks PC, grabs all files, huge trace'};
+const SHOP=[{k:'TROJAN',c:'₿',p:2},{k:'DESTROYER',c:'₿',p:5},{k:'VPN',c:'$',p:250,d:'-30 trace'}];
+const PERS=['LAX','VIGILANT','AGGRESSIVE','SHUTDOWN'];
+const PD={LAX:'lax — slow to react',VIGILANT:'VIGILANT — flags activity fast, watches live sessions',AGGRESSIVE:'AGGRESSIVE — deploys countermeasures',SHUTDOWN:'REACTIVE — pulls exposed services offline'};
+const CL=['Mr. Pale','The Broker','Ghost Auntie','Vex','Anon-7','Dr. Silt'];
+const S={known:[],cracked:new Set(),own:new Set(['STEALTH','SIPHON','RANSOM']),pay:[],loot:[],$:0,btc:0,trace:0,over:false,cur:null,mk:1,hacked:0,stolen:0,
+ mail:[],mid:0,cont:[],cid:0,news:[],hops:0,hist:[],jobs:[],jid:0,lid:0,pid:0,rate:400,pk:[],pkid:0,tlog:[],pick:null,t0:Date.now(),w60:0,w85:0};
+S.up=new Set();S.phantom=false;
+const rnd=(a,b)=>a+Math.random()*(b-a),pick=a=>a[Math.random()*a.length|0],byIp=ip=>S.known.find(t=>t.ip===ip);
+const clock=()=>new Date().toTimeString().slice(0,5);
+const fmtKB=k=>k>1024?(k/1024).toFixed(1)+' MB':k+' KB';
+const randIp=()=>[pick([10,172,192,45,88,203]),rnd(1,250)|0,rnd(1,250)|0,rnd(1,250)|0].join('.');
 
-/* ---------- callers ---------- */
-const GEN={
- repeat:["You already said that. Are you a recording?","Yes, you said that already. Anything new?"],
- rude:["Excuse me?! How dare you speak to me like that.","That was uncalled for. Wow."],
- threat:["Did you just threaten me? I'm going to report this.","Threats? That is NOT how customer service works!"],
- shout:["Why are you shouting at me?!","Please stop yelling. My ears work fine."],
- short:["…Is that all you've got?","Hello? Use your words."],
- patience:["I don't have all day. I'm hanging up now."]
-};
-const PERSONAS=[
-{id:'eleanor',name:'Eleanor “Granny” Grimshire',short:'Eleanor',tag:'Gardening enthusiast · Likes to be listened to',rule:'Hates being rushed',
- product:'Gnome Guardian™ Lifetime Protection Plan',look:{skin:'#f7dd9b',hair:'#e9e5e0',style:'bun',glasses:'round',shirt:'#7d5aa6'},voice:[1.5,.9],
- trust:40,sus:23,patience:112,susMul:.8,pitchLike:.9,
- w:{polite:1.6,empathy:2.2,question:1.6,pressure:-3.5,jargon:-2.2,casual:-1,topic:3.2},
- topics:/\b(garden\w*|roses?|tomato\w*|flowers?|soil|compost|plants?|seeds?|grandkids?|tea|knit\w*|cookies?|bloom\w*|herbs?|gnomes?|petunias?|weeds?)\b/g,
- beats:[{l:'Mention gardening',re:/garden|rose|tomato|flower|plant|soil|gnome/},{l:'Show you’re listening',re:/listen|tell me more|take your time|go on|i hear/},{l:'Apologize for the charge',re:/sorry|apolog|regret/}],
- win:'Eleanor enrolled all 14 of her garden gnomes. They remain unaware.',
- L:{open:["Hello, young man. There's a charge on my bill for something I never bought, but the money was deducted. Can you help me look into it?"],
- great:["Oh, you're a sweet boy. My late Harold never listened half this well.","Well isn't that kind of you. Go on, I'm all ears and one hearing aid.","You remind me of my grandson, the one who calls. The other one doesn't."],
- good:["Mm, that's reassuring, dear.","Alright, I think I follow. Do continue.","That sounds sensible. I like sensible."],
- ok:["Hm? Say that again, dear, the kettle's whistling.","I'm not sure what that has to do with my bill."],
- bad:["That's a bit quick, isn't it? I'm not as spry as I was.","Now now, no need to rush an old woman.","I don't care for that tone."],
- awful:["Well! I never! Harold would have hung up ages ago.","I'm starting to think this isn't a nice company at all."],
- early:["A protection plan? Dear, I only called about the charge…","You're selling to me already? I haven't even had my tea."],
- invite:["You've been so patient with me, dear. Now, was there something else you wanted to tell me about?"],
- buy:["Oh alright, put me down for it! Gnomes do need protecting. Harold would approve."],
- lose:["I'm going to hang up now. My tomatoes need me."],sus:["This all sounds fishy. I'm calling my grandson. He knows computers."]}},
-{id:'chad',name:'Chad “Alpha” Brickowski',short:'Chad',tag:'Crypto enthusiast · Loves hype & big numbers',rule:'Boring talk = instant bore',
- product:'NFT of an NFT (Limited Edition)',look:{skin:'#f1c58b',hair:'#6a4423',style:'spiky',glasses:'shades',shirt:'#d9482f'},voice:[.8,1.15],
- trust:38,sus:12,patience:105,susMul:.5,pitchLike:1.4,
- w:{polite:.3,empathy:.6,flatter:2.4,pressure:1.2,jargon:1.6,casual:3,formal:-3,proof:.4,topic:3.2,rude:-3.5},
- topics:/\b(crypto|coins?|nfts?|gains?|moon|hodl|alpha|grind\w*|bull|portfolio|gym|protein|sigma|stonks?|lambo|dip)\b/g,
- beats:[{l:'Hype him up',re:/king|legend|champ|bro|alpha|beast|boss/},{l:'Talk gains',re:/gains?|moon|portfolio|crypto|nft|stonks|profit/},{l:'Match his energy',re:/lol|haha|yo|dude|bro|fire|sick|dope/}],
- win:'Chad now owns an NFT of an NFT. It is a screenshot of a screenshot.',
- L:{open:["Yo. Why is there a $19.99 “Premium Air Fee” on my bill? I don't even breathe premium. Fix it, I'm mid-grind."],
- great:["Haha yo, you get it. Finally someone with alpha energy.","Bro that's actually fire. Respect.","Okay okay, you're cool. Keep going."],
- good:["Yeah, that tracks.","Not bad, not bad.","Mm, I'm listening, bro."],
- ok:["Uh. What? I was checking my portfolio.","Cool story. Does it fix my bill?"],
- bad:["Bro that is SO boring.","Why are you talking like a terms-of-service?","Low energy, dude. Low energy."],
- awful:["Yeah no, I'm out. Bad vibes, zero gains.","You're killing my whole mood, bro."],
- early:["Whoa, pitching already? At least hype me up first.","Slow down bro, I haven't even been vibed yet."],
- invite:["Alright, you've got good energy. Got anything that, like, actually moons?"],
- buy:["An NFT of an NFT?? That's literally the future. Take my money, king!"],
- lose:["Peace. I gotta go buy the dip."],sus:["This feels like a rug pull. I'm out, reporting you."]}},
-{id:'brenda',name:'Brenda Voss',short:'Brenda',tag:'Accounts payable · Suspicious of everything',rule:'Distrusts pressure, flattery & vagueness',
- product:'Platinum Receipt Protection™',look:{skin:'#efc9a0',hair:'#2b2320',style:'bob',glasses:'round',shirt:'#3f5f7a'},voice:[1.1,1.05],
- trust:30,sus:38,patience:100,susMul:1.4,pitchLike:.75,
- w:{polite:1,empathy:.8,flatter:-2,question:1.5,pressure:-4,jargon:-1.5,casual:-2,formal:1.5,proof:3.2,topic:3,threat:-8},
- topics:/\b(itemi[sz]ed|reference|records?|ticket|numbers?|invoices?|audit|statements?|documentation|receipts?)\b/g,
- beats:[{l:'Offer a reference number',re:/reference|ticket|case number|number/},{l:'Confirm the charge details',re:/confirm|itemi|details|statement|invoice/},{l:'Offer a refund/credit',re:/refund|credit|reverse/}],
- win:'Brenda received a 3-page receipt for her receipt protection. She is thrilled.',
- L:{open:["I've found a $19.99 charge I did not authorize. I want an itemized explanation, and for the record, I'm recording this call."],
- great:["Hm. Finally, someone who documents things properly.","That's… actually satisfactory. Continue.","Good. A reference number. That's what I like to hear."],
- good:["Noted.","That is acceptable so far.","Okay. Go on, but I'm still watching you."],
- ok:["That doesn't answer my question.","I'm going to need specifics."],
- bad:["That sounds suspiciously vague.","I don't like being handled.","Are you reading from a script? It shows."],
- awful:["This is exactly what scammers sound like. I'm taking notes.","I'm filing a complaint. Spell your name."],
- early:["Selling? I called to dispute a charge, not collect more.","Pitching me before resolving my issue? Noted. Very noted."],
- invite:["Alright. You've been professional. If there's something relevant to my account, say it plainly."],
- buy:["Fine. It's documented, itemized, and I get a receipt. Sign me up for the Platinum plan."],
- lose:["This call is over. I'm sending a written complaint."],sus:["I'm reporting this call to the authorities. Goodbye."]}},
-{id:'pomfrey',name:'Dr. Reginald Pomfrey',short:'Dr. Pomfrey',tag:'Retired professor · Adores eloquence',rule:'Despises slang & being corrected',
- product:'Prestige Intellectual Subscription (tote bag incl.)',look:{skin:'#f3d3b0',hair:'#f2f2f2',style:'prof',glasses:'round',stache:true,shirt:'#5a3d2b',bow:true},voice:[.7,.85],
- trust:36,sus:18,patience:110,susMul:1,pitchLike:1,
- w:{polite:1.4,empathy:1,flatter:2.4,pressure:-3,jargon:.5,casual:-3.5,formal:1.8,big:1.2,correct:-4.5,topic:3,rude:-5.5},
- topics:/\b(latin|literature|scholar\w*|books?|library|shakespeare|thesis|universit\w*|erudite|esteemed|indeed|pray|philosoph\w*|novel)\b/g,
- beats:[{l:'Flatter his intellect',re:/brilliant|erudite|scholar|learned|wise|intellect|professor|doctor/},{l:'Use a fancy word',re:/\w{10,}/},{l:'Say “indeed”/“quite”',re:/indeed|quite so|certainly|most/}],
- win:'The tote bag is on its way. It is just a bag.',
- L:{open:["Good afternoon. I observe an erroneous debit upon my statement. I trust your establishment can rectify this with a modicum of competence?"],
- great:["Splendid! An articulate fellow at last. Do continue.","Indeed. Quite so. You have my attention, young man.","How refreshing. Eloquence is not yet extinct."],
- good:["Hm. Tolerable.","Yes, yes, I follow.","A reasonable proposition."],
- ok:["I beg your pardon? Do elaborate.","That was rather unenlightening."],
- bad:["I find your phrasing most pedestrian.","Do refrain from such crudeness, young man.","Such casualness is the death of discourse."],
- awful:["Preposterous! I have taught better manners to first-years.","I shall be writing to the board. Good day."],
- early:["A sales pitch? Before addressing my grievance? How gauche.","Pray, do not peddle wares until you have remedied my complaint."],
- invite:["You've conducted yourself admirably. Pray tell, is there something you wish to propose?"],
- buy:["A Prestige Intellectual Subscription, with tote bag? Capital! Enrol me at once."],
- lose:["I have concluded this exchange. Good day to you."],sus:["This reeks of chicanery. I am reporting you. Good day."]}},
-{id:'dale',name:'Dale “xX_Sn1per_Xx”',short:'Dale',tag:'Gamer · Allergic to formal talk',rule:'Formal language bores him',
- product:'Chair Warranty (chair not included)',look:{skin:'#e8b98c',hair:'#222',style:'cap',cap:'#2b6cb0',glasses:'',shirt:'#444a55',headset:true},voice:[1.3,1.2],
- trust:40,sus:15,patience:100,susMul:.7,pitchLike:1.2,
- w:{polite:.5,empathy:1,flatter:1,pressure:-1.2,jargon:-1,casual:3.2,formal:-3.5,big:-1,topic:3,rude:-2.5},
- topics:/\b(games?|gg|rank\w*|noobs?|clutch|loot|stream\w*|lobby|respawn|boss|xp|controller|headset|chair)\b/g,
- beats:[{l:'Use gamer talk',re:/gg|noob|clutch|loot|rank|lobby|respawn|boss|xp/},{l:'Joke around',re:/lol|haha|lmao|joke|funny/},{l:'Offer to fix it',re:/fix|refund|sort|handle|remove/}],
- win:'Dale’s chair warranty is valid for a chair he does not own.',
- L:{open:["bro why did u charge me for “ProGamer Chair Care”?? i dont even have a chair. my mom is gonna kill me"],
- great:["lmaooo ok ur actually cool","fr fr that's clutch, keep going","gg bro ur the first one that gets it"],
- good:["ok ok i feel u","yeah thats fair ngl","mm ok continue"],
- ok:["uh what? my game is loading","k. so does that fix my bill or nah"],
- bad:["bro why are you talking like my teacher","this is so boring i'm gonna fall asleep","cringe. low-key cringe."],
- awful:["ok nope. im out. ur trash support","ur giving noob energy, bye"],
- early:["wait are u trying to sell me stuff?? i just got here","bro i'm broke, don't pitch me yet"],
- invite:["ok ur actually chill. got any like, deals or something?"],
- buy:["a chair warranty?? chair not included?? bro that's genius, take my 40 bucks"],
- lose:["gotta go, my team is waiting. later."],sus:["this is sketchy af. i'm gonna report u."]}},
-{id:'marjorie',name:'Marjorie “Manager Please” Pennington',short:'Marjorie',tag:'Professional complainer · Wants a solution yesterday',rule:'Wants apologies & solutions',
- product:'Manager-On-Demand™ Membership',look:{skin:'#f2cfae',hair:'#e6c35a',style:'bob',glasses:'',shirt:'#c0394f'},voice:[1.25,1.1],
- trust:32,sus:25,patience:100,susMul:1.1,pitchLike:1,
- w:{polite:2,empathy:1.5,flatter:1,question:.6,pressure:-2.2,jargon:-1.5,casual:-1.2,proof:2.8,topic:3,rude:-5.5},
- topics:/\b(managers?|refunds?|escalat\w*|complain\w*|reviews?|solutions?|unacceptable|resolve\w*|corporate|supervisor)\b/g,
- beats:[{l:'Apologize sincerely',re:/sorry|apolog/},{l:'Offer a real solution',re:/refund|credit|fix|resolve|solution|reverse/},{l:'Promise personal follow-up',re:/personally|i will|i'll|follow up|follow-up/}],
- win:'Marjorie now has a manager on retainer. The manager is you. Good luck.',
- L:{open:["I would like to speak to your manager. Actually, your manager's manager. There is a charge on my bill that is simply unacceptable!"],
- great:["Finally, someone who takes responsibility. Thank you.","Well, that's what I like to hear. Solutions!","See, was that so hard? Good. Continue."],
- good:["Mm-hm. Keep going.","That's a start.","Alright, that sounds reasonable."],
- ok:["That's not a solution. I need a solution.","I'm waiting for an actual answer."],
- bad:["Unacceptable! I want a manager!","Are you even trained for this?","This is not good enough."],
- awful:["That's it. I'm leaving a review. Five paragraphs long.","I will be escalating this. Loudly."],
- early:["You're trying to sell me something?! I'm here to complain, not shop!","Fix my bill first, upsell later!"],
- invite:["Well. You've handled this better than the last three agents. Is there something else you'd like to offer?"],
- buy:["A Manager-On-Demand membership? Where do I sign? I've wanted this my entire life."],
- lose:["I'm hanging up and calling corporate."],sus:["This is a scam, isn't it? I'm reporting you to the attorney general!"]}}
-];
+/* ---------- upgrade tree ---------- */
+const UPG=[
+ ['A1','Packet Scrubber','Trace gained −10%','$',350,[]],['A2','Ghost Routing','Trace gained −20%','₿',1.5,['A1']],['A3','Null Identity','Trace gained −35%','₿',5,['A2']],
+ ['B1','Heatsink','Trace cools 2× faster','$',300,[]],['B2','Cryo Array','Trace cools 3× faster','₿',1,['B1']],['B3','Dead Zone','Trace cools 5× faster','₿',3.5,['B2']],
+ ['C1','GPU Rig','Cracking 25% faster','$',400,[]],['C2','Render Farm','Cracking 50% faster','₿',2,['C1']],['C3','Quantum Annealer','Cracking 70% faster','₿',6,['C2']],
+ ['D1','Fence Contacts','+15% on loot sales, contracts and ransoms','$',450,[]],['D2','Black Broker','+35% on loot, contracts and ransoms','₿',2,['D1']],['D3','Cartel Network','+75% on loot, contracts and ransoms','₿',6,['D2']],
+ ['E1','Silent Siphon','Noisy siphons and copies cost half the trace','$',500,[]],['E2','Zero-Day Library','STEALTH alone beats level 2 antivirus','₿',4,['E1']],
+ ['F1','Counter-ICE','Countermeasures come 40% less often and take 14s to land','$',400,[]],['F2','Insider Mole','Outages last half as long; vigilant targets cost ×1.3 instead of ×1.8','₿',2.5,['F1']],
+ ['G1','Bulletproof Proxies','Each hop cuts 25% trace and slows cracks less','$',350,[]],['G2','Mesh Network','Each hop cuts 30% trace, almost no slowdown','₿',3,['G1']],
+ ['H1','Recon Drone','HVT recon takes 5s; patch windows open sooner and last 100s','₿',3,['C1']],
+ ['P','Ghost in the Wires','Survive one full trace: it drops to 60% instead (once)','₿',10,['A3','B3']]
+].map(([id,n,d,c,p,req])=>({id,b:id[0],n,d,c,p,req}));
+const UBR=[['A','🕶 Evasion'],['B','❄ Cooling'],['C','⚡ Cracking'],['D','💰 Income'],['E','☣ Tooling'],['F','🛡 Defense'],['G','🌐 Network'],['H','★ Planning'],['P','👻 Capstone']];
+const has=k=>S.up.has(k);
+const incM=()=>has('D3')?1.75:has('D2')?1.35:has('D1')?1.15:1;
+const crackM=()=>has('C3')?.3:has('C2')?.5:has('C1')?.75:1;
+const traceM=()=>has('A3')?.65:has('A2')?.8:has('A1')?.9:1;
+const hopCut=()=>has('G2')?.3:has('G1')?.25:.2;
+const hopSlow=()=>has('G2')?.1:has('G1')?.2:.3;
+const decay=()=>has('B3')?5:has('B2')?3:has('B1')?2:1;
+function buyUp(id){const u=UPG.find(x=>x.id===id);if(!u||has(id))return;if(!u.req.every(has))return notify('Requires: '+u.req.filter(x=>!has(x)).map(x=>UPG.find(y=>y.id===x).n).join(', '));
+ if(u.c==='₿'?S.btc<u.p:S.$<u.p)return notify('Not enough funds');
+ if(u.c==='₿')S.btc=+(S.btc-u.p).toFixed(2);else S.$-=u.p;S.up.add(id);sfx('success');notify('Upgrade installed: '+u.n);pr('upgrade installed: '+u.n,'y');refresh()}
 
-/* ---------- quick replies ---------- */
-const CHIPS=[
- {lo:0,hi:50,l:'Listen patiently',q:'“Take your time, I\'m listening.”',t:"Take your time, I'm listening. Tell me exactly what happened."},
- {lo:0,hi:50,l:'Professional Reply',q:'“We\'ll handle it according to procedure.”',t:"We'll handle this according to procedure. Could I get the details of the charge?"},
- {lo:0,hi:50,l:'Just kidding',q:'“The computer wants to quit too?”',t:"Ha, the computer wants to quit too? Just kidding. Please go on."},
- {lo:0,hi:55,l:'Apologize',q:'“I\'m so sorry about that.”',t:"I'm so sorry about that, let me make this right for you."},
- {lo:0,hi:60,l:'Ask for details',q:'“Could you tell me more?”',t:"Could you tell me a bit more about the charge?"},
- {lo:0,hi:100,l:'Blame them',q:'“Did you click something, again?”',t:"Did you maybe click something by accident?"},
- {lo:20,hi:70,l:'Compliment',q:'“You sound like a smart person.”',t:"You sound like a very smart person, honestly."},
- {lo:20,hi:70,l:'Small talk',q:'“How\'s your day going?”',t:"How's your day going otherwise?"},
- {lo:20,hi:70,l:'Empathize',q:'“That sounds really frustrating.”',t:"That sounds really frustrating, I completely understand."},
- {lo:25,hi:80,l:'Promise help',q:'“I\'ll personally look into it.”',t:"I'll personally look into this and get you a refund."},
- {lo:20,hi:100,l:'Corporate-speak',q:'“Let\'s leverage some synergy.”',t:"Let's circle back and leverage some synergy on this."},
- {lo:55,hi:100,l:'Soft pitch',q:'“We have a plan that might help.”',t:"We do have a protection plan that might help prevent this in future. Would you like to hear about it?"},
- {lo:55,hi:100,l:'Value pitch',q:'“Many customers love our premium.”',t:"Many of our customers really love our premium coverage, it would solve this for you."},
- {lo:55,hi:100,l:'Hard sell',q:'“BUY NOW, limited time offer!!!”',t:"BUY NOW, this is a limited time offer, act fast!!!"},
- {lo:60,hi:100,l:'Reassure',q:'“Want me to explain how it works?”',t:"Would you like me to explain how it works, with no obligation?"}
-];
+/* ---------- security personalities ---------- */
+const isOff=t=>Date.now()<t.off;
+const tt=(t,n)=>addTrace(n>0&&t.pers==='VIGILANT'?Math.ceil(n*(has('F2')?1.3:1.8)):n);
+const tag=t=>(t.hvt?'★HVT ':'')+(t.known?t.pers:'?');
+function hv(t){if(!t.hvt||S.cracked.has(t.ip))return'';const n=Date.now();if(t.lock>n)return' · lockdown '+Math.ceil((t.lock-n)/1000)+'s';if(!t.intel)return' · needs recon';if(n<t.win.s)return' · window in '+Math.ceil((t.win.s-n)/1000)+'s';if(n<t.win.e)return' · WINDOW OPEN '+Math.ceil((t.win.e-n)/1000)+'s';return' · window closed'}
+function dropSession(t){if(S.cur===t){S.cur=null;const w=WIN.rdp;if(w){const q=s=>w.body.querySelector(s);q('#vd').style.display='none';q('#rtool').style.display='none'}}}
+function expose(t){if(t.pers!=='SHUTDOWN'||t.silent||t.shutT||isOff(t)||S.over)return;
+ t.shutT=setTimeout(()=>{t.shutT=null;if(S.over)return;const ms=rnd(25,40)*1000*(has('F2')?.5:1);t.off=Date.now()+ms;dropSession(t);addTrace(2);sfx('alarm');
+  notify('⚠ '+t.n+' pulled its services offline');pr('⚠ '+t.n+' ('+t.ip+') shut down exposed services — back in ~'+Math.round(ms/1000)+'s. Session dropped.','w');pushNews(t.n+' temporarily takes services offline');
+  setTimeout(()=>{if(!S.over){notify(t.n+' is back online');refresh()}},ms+200);refresh()},rnd(8,16)*1000)}
+function countermeasure(t){sfx('alarm');notify('⚠ '+t.n+' deployed a countermeasure — kill it in System Monitor!');pr('⚠ COUNTERMEASURE on '+t.ip+' — kill the job in System Monitor within 9s.','w');
+ const j=job('COUNTERMEASURE '+t.ip,has('F1')?14000:9000,()=>{if(S.over)return;addTrace(15);if(t.st==='infected'&&!t.silent)t.st='cracked';t.dl=[];dropSession(t);pushNews(t.n+' purges intruder tooling');pr('Countermeasure landed on '+t.ip+': payload purged, session dropped, trace +15.','w');refresh()});j.cm=t.ip;refreshApp('mon')}
 
-/* ---------- avatar ---------- */
-function avatar(L,mood){
- const o='#1b2a2a';let back='',front='',acc='';
- const st=L.style;
- if(st==='bun'){back=`<circle cx="100" cy="42" r="21" fill="${L.hair}" stroke="${o}" stroke-width="4"/>`;front=`<path d="M49 98Q46 44 100 46Q154 44 151 98Q146 70 100 68Q54 70 49 98Z" fill="${L.hair}" stroke="${o}" stroke-width="4"/>`}
- if(st==='spiky'){front=`<polygon points="50 92 52 58 68 70 74 40 90 62 100 32 112 62 128 40 134 70 150 58 150 92 130 72 100 66 70 72" fill="${L.hair}" stroke="${o}" stroke-width="4" stroke-linejoin="round"/>`}
- if(st==='bob'){back=`<path d="M44 124Q38 38 100 36Q162 38 156 124L158 152L138 152L138 110L62 110L62 152L42 152Z" fill="${L.hair}" stroke="${o}" stroke-width="4" stroke-linejoin="round"/>`;front=`<path d="M50 94Q58 54 100 56Q142 54 150 94Q128 74 100 74Q72 74 50 94Z" fill="${L.hair}" stroke="${o}" stroke-width="4"/>`}
- if(st==='prof'){front=`<path d="M49 82Q32 86 36 112Q47 104 51 98Z" fill="${L.hair}" stroke="${o}" stroke-width="4"/><path d="M151 82Q168 86 164 112Q153 104 149 98Z" fill="${L.hair}" stroke="${o}" stroke-width="4"/>`}
- if(st==='cap'){front=`<path d="M47 88Q48 38 100 38Q152 38 153 88Z" fill="${L.cap}" stroke="${o}" stroke-width="4"/><path d="M110 82L176 82Q176 96 150 96L110 92Z" fill="${L.cap}" stroke="${o}" stroke-width="4" stroke-linejoin="round"/>`}
- if(L.headset){acc+=`<path d="M42 106Q40 30 100 30Q160 30 158 106" fill="none" stroke="#222" stroke-width="6"/><rect x="34" y="98" width="14" height="30" rx="5" fill="#222"/><rect x="152" y="98" width="14" height="30" rx="5" fill="#222"/><path d="M40 126Q46 154 80 150" fill="none" stroke="#222" stroke-width="4"/><circle cx="82" cy="150" r="6" fill="#222"/>`}
- let glasses='',eyes=`<g class="eyes"><circle cx="78" cy="104" r="4.5" fill="${o}"/><circle cx="122" cy="104" r="4.5" fill="${o}"/></g>`;
- if(L.glasses==='round')glasses=`<circle cx="78" cy="103" r="17" fill="rgba(255,255,255,.28)" stroke="${o}" stroke-width="3.5"/><circle cx="122" cy="103" r="17" fill="rgba(255,255,255,.28)" stroke="${o}" stroke-width="3.5"/><path d="M95 102L105 102" stroke="${o}" stroke-width="3.5"/>`;
- if(L.glasses==='shades'){eyes='';glasses=`<rect x="56" y="92" width="42" height="22" rx="7" fill="#1a1a1a" stroke="${o}" stroke-width="3"/><rect x="102" y="92" width="42" height="22" rx="7" fill="#1a1a1a" stroke="${o}" stroke-width="3"/><path d="M98 100L102 100" stroke="${o}" stroke-width="3.5"/>`}
- const brows={happy:['M66 84L90 80','M134 84L110 80'],neutral:['M66 86L90 85','M134 86L110 85'],worried:['M66 90L90 82','M134 90L110 82'],angry:['M64 80L90 90','M136 80L110 90']}[mood];
- const brow=L.glasses==='shades'&&mood!=='angry'?'':`<path d="${brows[0]}" stroke="${o}" stroke-width="4" stroke-linecap="round" fill="none"/><path d="${brows[1]}" stroke="${o}" stroke-width="4" stroke-linecap="round" fill="none"/>`;
- const mouth={happy:'M80 132Q100 154 120 132Z',neutral:'M86 138Q100 142 114 138',worried:'M86 142Q100 134 114 142',angry:'M84 146Q100 130 116 146'}[mood];
- const mfill=mood==='happy'?'#7a2c2c':'none';
- const stache=L.stache?`<path d="M78 130Q100 118 122 130Q112 140 100 133Q88 140 78 130Z" fill="${L.hair}" stroke="${o}" stroke-width="3"/>`:'';
- const bow=L.bow?`<path d="M86 158L100 166L86 174Z M114 158L100 166L114 174Z" fill="#c0392b" stroke="${o}" stroke-width="3" stroke-linejoin="round"/><circle cx="100" cy="166" r="4" fill="#c0392b" stroke="${o}" stroke-width="2.500"/>`:'';
- const cheeks=mood==='happy'?`<circle cx="66" cy="124" r="8" fill="rgba(235,100,100,.35)"/><circle cx="134" cy="124" r="8" fill="rgba(235,100,100,.35)"/>`:'';
- return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">${back}
- <path d="M28 200Q34 158 100 156Q166 158 172 200Z" fill="${L.shirt}" stroke="${o}" stroke-width="4"/><rect x="87" y="148" width="26" height="16" fill="${L.skin}" stroke="${o}" stroke-width="3"/>${bow}
- <circle cx="49" cy="110" r="9" fill="${L.skin}" stroke="${o}" stroke-width="3.500"/><circle cx="151" cy="110" r="9" fill="${L.skin}" stroke="${o}" stroke-width="3.500"/>
- <ellipse cx="100" cy="104" rx="52" ry="58" fill="${L.skin}" stroke="${o}" stroke-width="4"/>${front}${acc}${cheeks}${brow}${eyes}${glasses}
- <path d="M100 108Q93 126 103 126" stroke="${o}" stroke-width="3.500" fill="none" stroke-linecap="round"/>
- <path class="mouth" d="${mouth}" fill="${mfill}" stroke="${o}" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round"/>${stache}</svg>`}
+/* ---------- world generation ---------- */
+function gen(lat,lon,force,mult){let ip;do ip=[pick([10,172,192]),rnd(1,250)|0,rnd(1,250)|0,rnd(1,250)|0].join('.');while(byIp(ip));
+ const hvt=(mult>=2&&Math.random()<.7)||Math.random()<.12,fw=hvt?3:pick([1,1,2,2,3]),av=hvt?pick([1,2,2]):pick([0,1,1,2]),w=Math.round(100*(fw+av+1)*rnd(1,2)*(mult||1)*(hvt?1.8:1));
+ const f=[...FN].sort(()=>Math.random()-.5).slice(0,3+(Math.random()*2|0)).map(([n,m])=>({n,val:Math.round(w*m*rnd(.5,1)),took:false,kb:rnd(200,90000)|0}));
+ if(force&&!f.some(x=>x.n===force))f[0]={n:force,val:Math.round(w*1.2),took:false,kb:rnd(500,60000)|0};
+ return{n:pick(NA)+' '+pick(NB),ip,lat:Math.max(-60,Math.min(70,Math.round(lat+rnd(-15,15)))),lon:Math.max(-170,Math.min(175,Math.round(lon+rnd(-25,25)))),fw,av,w,f,st:'locked',dl:[],silent:false,hvt,pers:pick(PERS),intel:0,win:null,lock:0,off:0,known:false,shutT:null}}
 
-/* ---------- real AI customer dialogue ----------
-   After deploying worker.js, paste its HTTPS URL below. Never put the Gemini API key here.
-   AI-only mode: every customer line comes from the Worker; failures are shown in-game instead of using local dialogue.
-*/
-const AI_ENDPOINT = 'https://scamcallai.ceachpobbler.workers.dev/';
+/* ---------- notifications, news, mail ---------- */
+function notify(m){sfx(/^not enough/i.test(m)?'err':'notify');const d=document.createElement('div');d.className='toast';d.textContent=m;$('#toasts').appendChild(d);setTimeout(()=>d.remove(),4200)}
+function pushNews(h){S.news.unshift({t:clock(),h});if(S.news.length>30)S.news.pop();refreshApp('browser')}
+function mail(from,subj,body,c){S.mail.unshift({id:++S.mid,from,subj,body,t:clock(),read:false,c});if(!S.over)notify('✉ '+subj);refreshApp('mail');tb()}
+function newContract(){const file=pick(FN)[0],t=gen(rnd(-40,60),rnd(-150,150),file),who=pick(CL);
+ const c={id:++S.cid,t,file,who,reward:Math.round(t.w*rnd(1.6,2.6)),state:'offer'};S.cont.push(c);
+ mail(who+' <'+who.toLowerCase().replace(/\W/g,'')+'@null.sys>','Job: '+file+' from '+t.n,
+ `Need ${file} from ${t.n}.\nPays $${c.reward} on delivery.\n\n${t.hvt?'WARNING: hardened high-value site. Do not rush it — recon first, proxy up, and hit the patch window.\n\n':''}Accept the contract and I will give you their last known address. Copy the file from their machine and the money is wired automatically.\n\n— ${who}`,c.id)}
+function addTrace(n){if(S.over)return;if(n>0){const v=n*Math.max(.1,1-hopCut()*S.hops)*traceM();n=Math.floor(v)+(Math.random()<v%1?1:0)}S.trace=Math.max(0,Math.min(100,S.trace+n));
+ $('#trf').style.width=S.trace+'%';$('#trf').style.background=S.trace>70?'var(--w)':'var(--g)';
+ if(S.trace>=60&&!S.w60){S.w60=1;sfx('alarm');mail('ISP Abuse Desk <abuse@backbone.net>','Unusual traffic from your line','We are seeing patterned probing from your connection.\n\nTip: route through a proxy chain in the Network Analyzer. Each hop cuts new trace by 20% but slows cracking. A VPN from the black shop also helps, and blocking flagged packets in the analyzer bleeds trace.')}
+ if(S.trace>=85&&!S.w85){S.w85=1;sfx('alarm');mail('unknown <???@???>','THEY ARE CLOSE','Trace above 85%. Stand up, kill noisy jobs, and let it cool down.')}
+ if(S.trace<40){S.w60=0;S.w85=0}
+ if(S.trace>=100&&has('P')&&!S.phantom){S.phantom=true;S.trace=60;$('#trf').style.width='60%';sfx('alarm');notify('👻 Ghost in the Wires absorbed a full trace — one time only')}else if(S.trace>=100)finish('TRACED.\nFinal haul: $'+S.$+' · ₿'+S.btc.toFixed(2)+' · machines hit: '+S.hacked)}
+function finish(m){if(S.over)return;S.over=true;sfx('gameover');hum();$('#et').innerText=m;$('#end').style.display='flex';$('#gui').style.display='none'}
+function hud(){$('#wl').textContent='$'+S.$+'  ₿'+S.btc.toFixed(2)}
 
+/* ---------- background jobs ---------- */
+function job(name,ms,done,tick){const j={id:++S.jid,name,p:0};
+ j.iv=setInterval(()=>{j.p+=10;tick&&tick(j.p);if(j.p>=100){clearInterval(j.iv);S.jobs=S.jobs.filter(x=>x!==j);done()}refreshApp('mon')},ms/10);
+ j.kill=()=>{clearInterval(j.iv);S.jobs=S.jobs.filter(x=>x!==j)};S.jobs.push(j);return j}
 
-let aiUnavailableNoticeShown = false;
+/* ---------- window manager ---------- */
+const APPS={},WIN={};let zt=10,cas=0;
+const reg=(id,o)=>APPS[id]=o;
+function refreshApp(id){const w=WIN[id];if(w&&!w.min&&APPS[id].update)APPS[id].update(w.body,w)}
+function refresh(){hud();Object.keys(WIN).forEach(refreshApp);tb()}
+function openApp(id){if(S.over)return;sfx('open');let w=WIN[id];if(!w)w=mkWin(id);w.el.style.display='flex';w.min=false;focusWin(id);refreshApp(id);$('#smenu').style.display='none'}
+function focusWin(id){Object.values(WIN).forEach(w=>w.el.classList.remove('f'));const w=WIN[id];if(!w)return;w.el.style.zIndex=++zt;w.el.classList.add('f');tb()}
+function minWin(id){const w=WIN[id];w.min=true;w.el.style.display='none';tb()}
+function closeWin(id){const w=WIN[id];if(!w)return;sfx('close');APPS[id].close&&APPS[id].close();w.el.remove();delete WIN[id];tb()}
+function toggleMax(id){const w=WIN[id],e=w.el;if(w.max){Object.assign(e.style,w.geo);w.max=false}else{w.geo={left:e.style.left,top:e.style.top,width:e.style.width,height:e.style.height};Object.assign(e.style,{left:'0',top:'0',width:'100%',height:'100%'});w.max=true}}
+function mkWin(id){const a=APPS[id],el=document.createElement('div');el.className='win';const[w,h]=a.size||[560,380],dw=$('#desk').clientWidth,dh=$('#desk').clientHeight;
+ const ww=Math.min(w,dw-6),hh=Math.min(h,dh-6);Object.assign(el.style,{width:ww+'px',height:hh+'px',left:Math.max(0,Math.min(100+cas*28,dw-ww))+'px',top:Math.max(0,Math.min(20+cas*28,dh-hh))+'px'});cas=(cas+1)%8;
+ el.innerHTML=`<div class="wt"><span>${a.icon} ${a.title}</span><span class="wc"><button data-m>–</button><button data-z>▢</button><button data-x>✕</button></span></div><div class="wb"></div>`;
+ $('#wins').appendChild(el);const body=el.querySelector('.wb'),o={id,el,body,min:false,max:false};WIN[id]=o;a.init(body,o);
+ el.addEventListener('pointerdown',()=>focusWin(id),true);
+ const t=el.querySelector('.wt');
+ t.addEventListener('pointerdown',e=>{if(e.target.closest('button')||o.max)return;const r=el.getBoundingClientRect(),dr=$('#desk').getBoundingClientRect(),ox=e.clientX-r.left,oy=e.clientY-r.top;
+  const mv=ev=>{el.style.left=Math.max(-r.width+70,Math.min(dr.width-70,ev.clientX-dr.left-ox))+'px';el.style.top=Math.max(0,Math.min(dr.height-30,ev.clientY-dr.top-oy))+'px'};
+  const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up)};addEventListener('pointermove',mv);addEventListener('pointerup',up);e.preventDefault()});
+ t.addEventListener('dblclick',e=>{if(!e.target.closest('button'))toggleMax(id)});
+ el.querySelector('[data-m]').onclick=()=>minWin(id);el.querySelector('[data-z]').onclick=()=>toggleMax(id);el.querySelector('[data-x]').onclick=()=>closeWin(id);
+ return o}
+function unread(){return S.mail.filter(m=>!m.read).length}
+function tb(){const ids=Object.keys(WIN);$('#tbtn').innerHTML=ids.map(id=>{const w=WIN[id],a=APPS[id],u=id==='mail'&&unread()?` (${unread()})`:'';return`<button data-t="${id}" class="${w.el.classList.contains('f')&&!w.min?'on':''}">${a.icon} ${a.title}${u}</button>`}).join('');
+ document.querySelectorAll('#icons .dic').forEach(d=>{const id=d.dataset.o;let bd=d.querySelector('.bdg');const u=id==='mail'?unread():0;if(u){if(!bd){bd=document.createElement('span');bd.className='bdg';d.appendChild(bd)}bd.textContent=u}else if(bd)bd.remove()})}
+$('#tbtn').onclick=e=>{const id=e.target.dataset.t;if(!id)return;const w=WIN[id];if(w.min||!w.el.classList.contains('f'))openApp(id);else minWin(id)};
+$('#icons').onclick=e=>{const d=e.target.closest('.dic');if(d)openApp(d.dataset.o)};
+$('#start').onclick=()=>{const m=$('#smenu');m.style.display=m.style.display==='flex'?'none':'flex'};
+$('#desk').addEventListener('pointerdown',e=>{if(e.target.id==='desk'||e.target.id==='icons')$('#smenu').style.display='none'});
+$('#smenu').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.o)openApp(b.dataset.o);else leave()};
 
-/* ---------- state ---------- */
-let G=null,C=null,tick=null;
-const wave=$('#wave');for(let i=0;i<15;i++)wave.appendChild(document.createElement('i'));
-function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));$(id).classList.add('on')}
-function line(P,key){const pool=P.L[key]||GEN[key]||[];if(!pool.length)return'';P._u=P._u||{};const u=P._u[key]=P._u[key]||[];let av=pool.map((_,i)=>i).filter(i=>!u.includes(i));if(!av.length){u.length=0;av=pool.map((_,i)=>i)}const i=pick(av);u.push(i);return pool[i]}
-
-$('#bStart').onclick=()=>{G={order:shuffle(PERSONAS),i:0,sales:0,money:0};nextRing()};
-$('#bSnd').onclick=()=>{snd=!snd;$('#bSnd').textContent=snd?'🔊 Sound on':'🔇 Sound off';if(!snd&&window.speechSynthesis)speechSynthesis.cancel();tone(660,.1)};
-function nextRing(){
- $('#over').classList.remove('on');show('#sRing');
- $('#ringInfo').textContent=`Call ${G.i+1} of ${G.order.length} · Line 3`;
- clearInterval(ringT);ringOnce();ringT=setInterval(ringOnce,2200);
-}
-$('#bAnswer').onclick=()=>{clearInterval(ringT);startCall()};
-
-function startCall(){
- const P=G.order[G.i];P._u={};
- C={P,trust:P.trust,sus:P.sus,patience:P.patience,beats:P.beats.map(()=>false),used:{},hist:[],tagStat:{},pitchN:0,c60:false,c80:false,over:false,busy:true,talking:false,msgs:[],lastD:0};
- $('#sCallNo').textContent=`Call ${G.i+1}/${G.order.length}`;$('#sSales').textContent=`Sales ${G.sales} · $${G.money}`;
- $('#cName').textContent=P.name;$('#cTag').textContent=P.tag;$('#rule').textContent=P.rule;
- $('#chat').innerHTML='';$('#ana').textContent='Waiting for your first message…';
- show('#sCall');renderHUD();renderChips();setBeats();
- $('#bHang').className='hang';$('#bHang').textContent='☎ Hang up';
- clearInterval(tick);tick=setInterval(()=>{if(!C||C.over||C.busy)return;C.patience--;renderHUD();if(C.patience<=0)finish('patience')},1000);
- callerSay(genLine(P,'open'),400,()=>{$('#in').focus()});
-}
-function renderHUD(){
- const t=Math.round(C.trust),P=C.P;
- const st=t<25?['HOSTILE','var(--red)']:t<45?['UNCERTAIN','var(--amber)']:t<65?['WARMING','var(--green)']:t<80?['FRIENDLY','var(--green)']:['CONVINCED','#7dffae'];
- $('#tSt').textContent=st[0];$('#tSt').style.color=st[1];$('#tBar').style.width=t+'%';$('#tBar').style.background=st[1];$('#tPc').textContent=t+'%';
- const obj=t>=80?'Hang up now!':t>=60?'Make the pitch':t>=45?'Build rapport':t>=25?'Understand concerns':'Calm them down';
- $('#oTxt').textContent=obj;$('#oBar').style.width=clamp(t/80*100,0,100)+'%';
- const done=C.beats.filter(Boolean).length;
- $('#oSm').textContent=`Suspicion ${Math.round(C.sus)}% · Case steps ${done}/${P.beats.length}`;
- const pt=$('#pat');pt.textContent='⏱ Patience '+Math.max(0,Math.round(C.patience))+'s';pt.className=C.patience<20?'low':'';
- const mood=t<25?'angry':t<45?'worried':t<65?'neutral':'happy';
- if(C.mood!==mood){C.mood=mood;$('#av').innerHTML=avatar(P.look,mood)}
- $('#pic').classList.toggle('talk',!!C.talking);
- const h=$('#bHang');if(t>=80){h.className='hang go';h.textContent='💰 Hang up & bank sale'}else{h.className='hang';h.textContent='☎ Hang up'}
-}
-function setBeats(){$('#beats').innerHTML='<div style="font-size:12px;letter-spacing:.1em;color:var(--green);margin-bottom:4px">CASE STEPS</div>'+C.P.beats.map((b,i)=>`<div class="beat ${C.beats[i]?'done':''}">${C.beats[i]?'✔ '+b.l:'○ ???'}</div>`).join('')}
-function renderChips(){
- const t=C.trust;let pool=CHIPS.filter(c=>t>=c.lo&&t<=c.hi);
- let pickd=[];
- if(!C.hist.length){pickd=CHIPS.slice(0,3)}else{const sh=shuffle(pool);pickd=sh.slice(0,3)}
- $('#chips').innerHTML='';
- pickd.forEach(c=>{const b=document.createElement('button');b.className='q';b.innerHTML=`<span>${c.l}</span><em>${c.q}</em>`;b.onclick=()=>{$('#in').value=c.t;$('#in').focus()};$('#chips').appendChild(b)});
-}
-function addMsg(kind,text,tags){
- const d=document.createElement('div');d.className='msg '+kind;
- const who=kind==='c'?C.P.short:kind==='y'?'You':'';
- d.innerHTML=(who?`<div class="who">${who}</div>`:'')+`<div></div>`;d.lastChild.textContent=text;
- if(tags&&tags.length){const t=document.createElement('div');t.className='tags';t.innerHTML=tags.map(x=>`<span class="tag ${x.v>0?'p':x.v<0?'n':'z'}">${x.v>0?'+':''}${x.v} ${x.t}</span>`).join('');d.appendChild(t)}
- $('#chat').appendChild(d);$('#chat').scrollTop=1e5;return d;
-}
-/* ---------- local reply generator (free, no AI calls) ---------- */
-const GG={
- greet:["Hello. I'm fine, thanks. Now about my bill.","Fine, fine. Can we get to the charge?"],
- charge:["It's a charge for $19.99 and I never ordered anything.","It says nineteen ninety-nine, from a company called Definitely Legit Solutions. Which is you."],
- refund:["A refund would be a start.","Well, money back is certainly on the table."],
- pitchQ:["And what exactly is the {p}?","Hold on, tell me more about this {p}."],
- topic:["Ha, you mentioned {t}.","Interesting that you bring up {t}."],
- callback:["Going back to what you said about {m}…"],
- keyword:["{w}, huh? Go on."]
-};
-const GP={
- eleanor:{greet:["Oh, I'm well, dear, thank you for asking. Hearing aid's behaving today.","How sweet of you to ask. The roses are doing beautifully, so I can't complain."],
-  charge:["It says nineteen ninety-nine, dear, on the third. I've only ever bought seed packets.","Some sort of fee, twenty dollars near enough. Harold used to handle the bills, you see."],
-  refund:["Oh, a refund would be lovely, dear. That's two packets of tomato seed.","Getting it back would be wonderful. I do hate losing money."],
-  pitchQ:["Now what does this {p} actually do, dear?","Hmm, a {p}. Explain it slowly, I'm writing it on my napkin."],
-  topic:["Oh, you know about {t}? Harold always said I had a green thumb.","Well, {t}! You have good taste, young man.","You like {t} too? I never expected that on a phone call."],
-  callback:["Like you said about {m}, dear…","Now, going back to {m}, young man…"],
-  keyword:["{w}, you say? Hm, go on dear.","Did you say {w}? My hearing aid crackled."]},
- chad:{greet:["Yo, grinding as always. What's up?","Doing great bro, up eight percent today. Now fix my bill."],
-  charge:["It's a $19.99 Premium Air Fee. Who charges for air, bro?","Nineteen ninety-nine, dude. That's like two protein shakes."],
-  refund:["Refund? Yeah, run it back, I need that liquidity.","Money back is a W, not gonna lie."],
-  pitchQ:["Okay wait, what's the {p} do? Does it moon?","A {p}? Bro, break it down for me."],
-  topic:["Yo, {t}! Now we're talking, bro.","{t}? Finally someone speaking my language.","Bro, {t} is literally my whole personality."],
-  callback:["Going back to {m}, bro…","Wait, you said {m} earlier, that was lowkey fire."],
-  keyword:["{w}, huh? Not bad.","Ayo, {w}? Say more."]},
- brenda:{greet:["I'm fine. Let's keep this professional.","I'm well. Please proceed to the charge."],
-  charge:["Nineteen dollars ninety-nine cents, no invoice, no description. Itemize it.","A $19.99 debit with no receipt. I've checked my statement twice."],
-  refund:["A refund, in writing, with a reference number.","A credit is acceptable if it's documented."],
-  pitchQ:["What are the written terms of this {p}?","A {p}? Send me the terms and the cancellation policy first."],
-  topic:["Yes, {t}. That's the correct thing to focus on.","I'll note that you mentioned {t}."],
-  callback:["Returning to {m}, which you mentioned earlier…","For the record, you said {m}."],
-  keyword:["Noted: {w}. Continue.","{w}. I'm writing that down."]},
- pomfrey:{greet:["Quite well, I thank you. Now, to the matter of my statement.","Tolerably so. Shall we proceed with the grievance?"],
-  charge:["A debit of nineteen dollars and ninety-nine cents, unexplained and unauthorized.","An erroneous exaction of $19.99. I trust you find that unacceptable too."],
-  refund:["Restitution would be most welcome.","A reimbursement would restore my faith, modestly."],
-  pitchQ:["And what, pray, does this {p} entail?","A {p}? Elaborate, if you are able."],
-  topic:["Ah, {t}! A subject close to my heart.","You mention {t}. Perhaps you are not wholly uncultured."],
-  callback:["To return to your remark about {m}…","As you said regarding {m}, young man…"],
-  keyword:["{w}. An interesting choice of word.","You said {w}? Do continue."]},
- dale:{greet:["yo im good, just in a match. whats up","doing ok lol. so about my bill"],
-  charge:["its like 20 bucks for chair care. i dont have a chair","19.99 for a chair thing. bro i sit on my bed"],
-  refund:["refund would be sick ngl","yeah gimme my 20 bucks back lol"],
-  pitchQ:["wait whats the {p}","a {p}?? explain it like im 12"],
-  topic:["lol {t}, ur actually into that?","yooo {t}, same","{t}?? ok ur lowkey cool"],
-  callback:["wait going back to {m} lol","lol u said {m} earlier right"],
-  keyword:["{w}? lol ok go on","haha {w}, nice"]},
- marjorie:{greet:["I'm fine, thank you, but I'd be better with this charge gone.","Fine. Now, about my charge."],
-  charge:["It's $19.99 for something I never ordered, and nobody can explain it.","Nineteen ninety-nine! On my bill! I want to know who authorized that."],
-  refund:["A refund is the bare minimum, but yes.","Yes, a credit. In writing. Today."],
-  pitchQ:["And what exactly is this {p}?","A {p}? Explain it, and be quick."],
-  topic:["Yes, {t}! That's exactly the issue.","Finally, someone mentions {t}."],
-  callback:["Going back to {m}, which you brought up…","You said {m}, and I'm holding you to it."],
-  keyword:["{w}, yes. Continue.","Did you say {w}? Explain."]}
-};
-PERSONAS.forEach(p=>{p.G=GP[p.id]});
-const STOP=new Set("the a an and or but to of in on for with at by from up about into over after is are was were be been being am do does did have has had you he she it we they me my your our this that these those there here what when where who why how can could would should will just so very really not no yes okay please thank thanks sorry hello hey let us this that's i'm you're it's don't can't won't would like some then than them been also".split(" "));
-function keyWord(t){const w=(t.toLowerCase().match(/[a-z]{4,}/g)||[]).filter(x=>!STOP.has(x));w.sort((a,b)=>b.length-a.length);return w[0]||null}
-function lineG(P,kind){const pool=(P.G&&P.G[kind])||GG[kind]||[];if(!pool.length)return'';P._g=P._g||{};const u=P._g[kind]=P._g[kind]||[];let av=pool.map((_,i)=>i).filter(i=>!u.includes(i));if(!av.length){u.length=0;av=pool.map((_,i)=>i)}const i=pick(av);u.push(i);return pool[i]}
-function genLineLocal(P,key,text,r){
- const base=line(P,key);
- if(key==='open'||!text)return Promise.resolve(base);
- const low=text.toLowerCase();
- const tm=(low.match(P.topics)||[])[0],kw=keyWord(text);
- const isQ=low.includes('?')||/^(who|what|how|why|could|can|would|did|do|is|are|when|where)\b/.test(low);
- const o={t:tm||kw||'that',w:kw||'that',p:P.product,m:C.mem||'that'};
- let pre='';
- if(['great','good','ok'].includes(key)){
-  if(/\b(hello|hi|hey|good (morning|afternoon|evening)|how are you|how's your day)\b/.test(low)&&isQ)pre=lineG(P,'greet');
-  else if(isQ&&/\b(charge|bill|details?|amount|how much|when|what happened|tell me|more)\b/.test(low))pre=lineG(P,'charge');
-  else if(/\b(refund|credit|reverse|money back)\b/.test(low))pre=lineG(P,'refund');
-  else if(r&&r.f&&r.f.pitch&&C.trust>=60)pre=lineG(P,'pitchQ');
-  else if(tm)pre=lineG(P,'topic');
-  else if(C.mem&&Math.random()<.3)pre=lineG(P,'callback');
-  else if(kw&&Math.random()<.35)pre=lineG(P,'keyword');
+/* ---------- terminal ---------- */
+let out=null;
+function pr(t,c){S.tlog.push([t,c]);if(S.tlog.length>400)S.tlog.shift();if(out&&out.isConnected){const d=document.createElement('div');d.textContent=t;if(c)d.className=c;out.appendChild(d);out.scrollTop=1e9}}
+pr('NULLROUTE OS v3.0 — SIMULATION','m');
+pr('Everything is fictional. Use the desktop: Maps to pick a region, scan for victims, crack them, then work through Remote Desktop, Files, Browser and Mail.\nType help.\n');
+const C={
+help(){pr('help · list · status · clear\nscan <lat> <lon>   discover victims in the area\nprobe <ip>         reveal defences & wealth (+3 trace)\ncrack <ip>         breach the firewall (background job)\nproxy <0-3>        set proxy hops (less trace, slower cracks)\nrecon <ip>         study a target: reveals its posture; ★HVT: opens a patch window\nopen <app>         term maps rdp vir files browser mail mon net\nmail               open the inbox')},
+clear(){S.tlog=[];if(out)out.innerHTML=''},
+list(){if(!S.known.length)return pr('No known targets. Use scan.');S.known.forEach(t=>pr(`${t.ip}  ${t.n}  [${t.lat},${t.lon}] ${t.st} ${tag(t)}${hv(t)}`))},
+status(){pr(`Trace ${S.trace}% · $${S.$} · ₿${S.btc.toFixed(2)} · machines hit ${S.hacked} · proxy hops ${S.hops}`)},
+scan(a){const la=+a[0],lo=+a[1];if(a[0]===undefined||a[1]===undefined||isNaN(la)||isNaN(lo))return pr('usage: scan <lat> <lon>','w');sfx('scan');addTrace(2);
+ for(let i=0;i<2+(Math.random()*2|0);i++)S.known.push(gen(la,lo));
+ const n=S.known.filter(t=>Math.abs(t.lat-la)<=20&&Math.abs(t.lon-lo)<=30);n.forEach(t=>pr(`signal: ${t.ip}  ${t.n}  [${t.lat},${t.lon}] ${t.st}`));pr(n.length+' signal(s) in range.');notify('Scan complete: '+n.length+' signal(s)');refresh()},
+probe(a){const t=byIp(a[0]);if(!t)return pr('Unknown address. Scan first.','w');addTrace(3);
+ pr(`${t.n}: firewall L${t.fw} · antivirus L${t.av} ${['(none)','(needs STEALTH)','(needs STEALTH + TROJAN)'][t.av]} · est. wealth $${t.w}`);t.known=true;pr('  posture: '+PD[t.pers]);if(t.hvt)pr('  ★ HIGH-VALUE TARGET: run recon, route 2+ proxy hops, then crack inside the patch window. One attempt — failure means lockdown.','y');refresh()},
+crack(a){const t=byIp(a[0]);if(!t)return pr('Unknown address. Scan first.','w');
+ if(S.cracked.has(t.ip))return pr('Already cracked.');if(S.jobs.some(j=>j.ip===t.ip))return pr('Already cracking.','w');
+ const now=Date.now();
+ if(t.lock>now)return pr(`${t.n} is in lockdown for another ${Math.ceil((t.lock-now)/1000)}s.`,'w');
+ if(t.hvt){
+  if(!t.intel)return pr('★ High-value target. No intel — run: recon '+t.ip,'w');
+  if(S.hops<2)return pr('★ HVT: route through at least 2 proxy hops first (proxy 2).','w');
+  if(now<t.win.s)return pr(`Patch window opens in ${Math.ceil((t.win.s-now)/1000)}s. Wait for it.`,'y');
+  if(now>t.win.e){t.intel=0;return pr('The patch window closed. Intel is stale — recon again.','w')}
  }
- if(tm)C.mem=tm;else if(kw&&Math.random()<.5)C.mem=kw;
- if(!pre)return Promise.resolve(base);
- pre=pre.replace(/\{(\w)\}/g,(_,k)=>o[k]);
- const both=key==='ok'?Math.random()<.3:Math.random()<.6;
- return Promise.resolve(both?pre+' '+base:pre);
-}
-async function genLine(P,key,text,r){
- if(!AI_ENDPOINT || AI_ENDPOINT.includes('YOUR-SUBDOMAIN')) {
-  throw new Error('Set AI_ENDPOINT to your deployed Cloudflare Worker URL.');
- }
- const isOpening = key === 'open';
- const history=(C.msgs||[]).slice(-12).map(m=>({from:m.from,text:String(m.text||'').slice(0,900)}));
- const payload={
-  persona:{id:P.id,name:P.name,short:P.short,tag:P.tag,rule:P.rule,product:P.product,
-   trust:Math.round(C.trust),suspicion:Math.round(C.sus),patience:Math.round(C.patience)},
-  reaction:isOpening?'open':key,
-  playerText:isOpening?'Start this phone call with your first natural, in-character customer line. Mention the reason for calling or the suspicious charge naturally.':String(text||'').slice(0,1200),
-  history
- };
- const controller=new AbortController();
- const timeout=setTimeout(()=>controller.abort(),20000);
- try{
-  const response=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
-   body:JSON.stringify(payload),signal:controller.signal});
-  if(!response.ok) throw new Error('AI service returned HTTP '+response.status);
-  const data=await response.json();
-  const reply=typeof data.reply==='string'?data.reply.trim():'';
-  if(!reply) throw new Error('AI response was empty');
-  return reply.slice(0,700);
- }finally{clearTimeout(timeout)}
-}
+ const dur=t.fw*2500*(1+hopSlow()*S.hops)*crackM()*(t.hvt?1.6:1);
+ if(t.hvt&&now+dur>t.win.e)return pr(`Window closes in ${Math.ceil((t.win.e-now)/1000)}s but the crack needs ~${Math.ceil(dur/1000)}s. Too late — recon for a new window.`,'w');
+ const L=document.createElement('div');if(out&&out.isConnected)out.appendChild(L);
+ const j=job('crack '+t.ip,dur,()=>{
+  if(t.hvt&&Date.now()>t.win.e){t.lock=Date.now()+90000;t.intel=0;sfx('alarm');addTrace(20);pr('LOCKDOWN: '+t.n+' closed the hole mid-crack. Locked out for 90s.','w');pushNews(t.n+' locks down network after intrusion attempt');refresh();return}
+  sfx('success');S.cracked.add(t.ip);t.st='cracked';tt(t,8*t.fw);expose(t);pr('ACCESS GRANTED: '+t.ip+'. Open Remote Desktop.');notify('Cracked '+t.ip);refresh()},
+  p=>{sfx('tick');if(t.pers==='VIGILANT'&&p%30===0)addTrace(1);L.textContent=`cracking ${t.ip} [${'#'.repeat(p/10)}${'.'.repeat(10-p/10)}]`;if(out)out.scrollTop=1e9});j.ip=t.ip},
+proxy(a){const n=+a[0];if(!(n>=0&&n<=3))return pr('usage: proxy <0-3>','w');S.hops=n|0;pr('Proxy chain: '+S.hops+' hop(s)');refresh()},
+recon(a){const t=byIp(a[0]);if(!t)return pr('Unknown address. Scan first.','w');if(S.cracked.has(t.ip))return pr('Already inside.');if(S.jobs.some(j=>j.ip===t.ip))return pr('Busy on that target.','w');if(t.lock>Date.now())return pr('Target is in lockdown.','w');
+ const L=document.createElement('div');if(out&&out.isConnected)out.appendChild(L);
+ const j=job('recon '+t.ip,t.hvt?(has('H1')?5000:9000):4000,()=>{t.known=true;sfx('success');
+  if(t.hvt){const st=Date.now()+(has('H1')?rnd(6,12):rnd(12,22))*1000;t.intel=1;t.win={s:st,e:st+(has('H1')?100000:60000)};pr(`RECON ${t.ip}: ${PD[t.pers]}. Patch window opens in ${Math.ceil((st-Date.now())/1000)}s and stays open ${has('H1')?100:60}s.`,'y')}
+  else pr(`RECON ${t.ip}: ${PD[t.pers]}.`,'y');notify('Recon complete: '+t.ip);refresh()},
+  p=>{if(p%50===0)tt(t,1);L.textContent=`recon ${t.ip} [${'#'.repeat(p/10)}${'.'.repeat(10-p/10)}]`;if(out)out.scrollTop=1e9});j.ip=t.ip},
+open(a){if(APPS[a[0]])openApp(a[0]);else pr('Unknown app. Apps: '+Object.keys(APPS).join(' '),'w')},
+mail(){openApp('mail')}
+};
+reg('term',{icon:'▣',title:'Terminal',size:[600,380],
+ init(b){b.innerHTML='<div class="tout"></div><input class="tin" autocomplete="off" spellcheck="false" placeholder="type help" id="in">';out=b.querySelector('.tout');
+  S.tlog.forEach(([t,c])=>{const d=document.createElement('div');d.textContent=t;if(c)d.className=c;out.appendChild(d)});out.scrollTop=1e9;
+  b.addEventListener('click',()=>b.querySelector('.tin').focus());
+  b.querySelector('.tin').addEventListener('keydown',e=>{e.stopPropagation();sfx(e.key==='Enter'?'click':'key');if(e.key!=='Enter')return;const v=e.target.value.trim();e.target.value='';if(!v)return;pr('> '+v,'m');
+   const[c,...a]=v.split(/\s+/);(C[c.toLowerCase()]||(()=>pr('Unknown command.','w')))(a)});
+  setTimeout(()=>b.querySelector('.tin').focus(),0)},
+ close(){out=null}});
 
-function callerSay(src,minWait,cb){
- C.busy=true;C.talking=false;renderHUD();
- const typ=document.createElement('div');typ.className='msg c';typ.innerHTML=`<div class="who">${C.P.short}</div><div class="dots"><span></span><span></span><span></span></div>`;
- $('#chat').appendChild(typ);$('#chat').scrollTop=1e5;
- const my=C,t0=Date.now();
- Promise.resolve(src).then(text=>{
-  const wait=Math.max(0,clamp(minWait+text.length*10,minWait,1800)-(Date.now()-t0));
-  setTimeout(()=>{typ.remove();if(C!==my||(my.over&&!my.ending))return;my.msgs.push({from:'c',text});addMsg('c',text);say(text,my.P);tone(520,.08,'triangle',.05);tone(700,.1,'triangle',.05,.09);
-   C.talking=true;renderHUD();
-   setTimeout(()=>{if(C!==my)return;C.talking=false;C.busy=false;renderHUD();if(!my.over||my.ending)cb&&cb()},clamp(text.length*35,700,2200));
-  },wait);
- }).catch(err=>{
-  typ.remove();
-  if(C!==my)return;
-  C.busy=false;C.talking=false;renderHUD();
-  const message='AI reply failed: '+(err&&err.message?err.message:'Unknown error')+'. Check the Worker URL, Worker deployment, ALLOWED_ORIGIN, and Gemini API key, then try again.';
-  $('#ana').textContent=message;
-  const d=document.createElement('div');d.className='msg s';d.textContent=message;$('#chat').appendChild(d);$('#chat').scrollTop=1e5;
-  $('#in').focus();
- });
-}
+/* ---------- maps ---------- */
+function drawMap(c){if(!c)return;const mx=c.getContext('2d'),W=760,H=380;mx.fillStyle='#04150d';mx.fillRect(0,0,W,H);mx.strokeStyle='#0f4a2c';mx.fillStyle='#1a7a4a';mx.font='10px monospace';
+ for(let lo=-180;lo<=180;lo+=30){const x=(lo+180)/360*W;mx.beginPath();mx.moveTo(x,0);mx.lineTo(x,H);mx.stroke();mx.fillText(lo,x+2,10)}
+ for(let la=-90;la<=90;la+=30){const y=(90-la)/180*H;mx.beginPath();mx.moveTo(0,y);mx.lineTo(W,y);mx.stroke();mx.fillText(la,2,y-2)}
+ mx.fillStyle='#0b2a1a';[[-100,45,50,25],[-60,-15,20,30],[15,10,30,30],[20,50,40,15],[85,40,45,20],[135,-25,20,12]].forEach(([lo,la,rx,ry])=>{mx.beginPath();mx.ellipse((lo+180)/360*W,(90-la)/180*H,rx*W/360,ry*H/180,0,0,7);mx.fill()});
+ S.known.forEach(t=>{const x=(t.lon+180)/360*W,y=(90-t.lat)/180*H;mx.fillStyle={locked:'#33ff99',cracked:'#ffd24d',infected:'#ff9a4d',ransomed:'#ff4d4d',destroyed:'#888'}[t.st];mx.beginPath();mx.arc(x,y,4,0,7);mx.fill();if(t.hvt){mx.save();mx.strokeStyle='#ffd24d';mx.beginPath();mx.arc(x,y,8,0,7);mx.stroke();mx.restore()}mx.fillText((t.hvt?'★ ':'')+t.ip,x+10,y+3)});
+ if(S.pick){const x=(S.pick[1]+180)/360*W,y=(90-S.pick[0])/180*H;mx.strokeStyle='#fff';mx.strokeRect(x-6,y-6,12,12)}}
+reg('maps',{icon:'◎',title:'Maps',size:[640,440],
+ init(b){b.innerHTML='<div class="pad"><div class="m">Click the map to pick a coordinate, then scan it. Gold ring ★ = high-value target. Dot colours: green locked · yellow cracked · orange infected · red ransomed · grey destroyed.</div><canvas class="mp" width="760" height="380"></canvas><div class="bar2"><span class="mi m">LAT — LON —</span> <button class="ms" disabled>Scan here</button></div></div>';
+  const c=b.querySelector('.mp');c.onclick=e=>{const r=c.getBoundingClientRect(),lo=Math.round((e.clientX-r.left)/r.width*360-180),la=Math.round(90-(e.clientY-r.top)/r.height*180);S.pick=[la,lo];
+   b.querySelector('.mi').textContent=`LAT ${la}  LON ${lo}  →  scan ${la} ${lo}`;b.querySelector('.ms').disabled=false;const i=$('#in');if(i)i.value=`scan ${la} ${lo}`;drawMap(c)};
+  b.querySelector('.ms').onclick=()=>{if(S.pick)C.scan(S.pick)}},
+ update(b){drawMap(b.querySelector('.mp'))}});
 
-/* ---------- AI analysis ---------- */
-function analyze(text){
- const P=C.P,low=text.toLowerCase().trim(),W=Object.assign({},DW,P.w);
- const words=low.match(/[a-z0-9']+/g)||[];const tags=[];let d=0,sus=0;const f={};
- const n=re=>(low.match(re)||[]).length;
- const add=(v,l)=>{d+=v;if(Math.abs(v)>=.5)tags.push({t:l,v:Math.round(v)})};
- const dim=(k,cnt,w,label)=>{if(!cnt)return 0;const u=C.used[k]||0;const v=w>0?w*Math.min(cnt,2)*Math.max(.4,1/(1+.3*u)):w*Math.min(cnt,2);C.used[k]=u+1;add(v,label);return cnt};
- f.polite=dim('polite',n(RX.polite),W.polite,LBL.polite);
- f.empathy=dim('empathy',n(RX.empathy),W.empathy,LBL.empathy);
- f.flatter=dim('flatter',n(RX.flatter),W.flatter,LBL.flatter);
- const q=low.includes('?')||/^(who|what|how|why|could|can|would|did|do|is|are)\b/.test(low);
- if(q)dim('question',1,W.question,LBL.question);
- f.pressure=dim('pressure',n(RX.pressure),W.pressure,LBL.pressure);
- f.threat=dim('threat',n(RX.threat),W.threat,LBL.threat);
- f.jargon=dim('jargon',n(RX.jargon),W.jargon,LBL.jargon);
- f.rude=dim('rude',n(RX.rude),W.rude,LBL.rude);
- f.proof=dim('proof',n(RX.proof),W.proof,LBL.proof);
- dim('casual',n(RX.casual),W.casual,W.casual<0?'Too casual':LBL.casual);
- dim('formal',n(RX.formal),W.formal,W.formal<0?'Too formal':LBL.formal);
- dim('correct',n(RX.correct),W.correct,LBL.correct);
- const tp=n(P.topics);if(tp)dim('topic',tp,W.topic,LBL.topic);
- if(W.big){const bw=words.filter(w=>w.length>=9).length;if(bw)add(W.big*Math.min(bw,3)*.8,W.big>0?LBL.big:'Too wordy')}
- // pitch
- f.pitch=n(RX.pitch);let early=false;
- if(f.pitch){C.pitchN++;const t=C.trust;
-  if(t<50){add(-11,'Pitched too early!');sus+=15;early=true}
-  else if(t<65){add(-2,'Pitch slightly early');sus+=5;early=true}
-  else{add((C.pitchN>1?3:8)*(P.pitchLike||1),'Smooth pitch');sus-=3}}
- // quality checks
- let shout=false,shortMsg=false,repeat=false;
- const letters=text.replace(/[^a-z]/gi,'');
- if(letters.length>=8&&letters.replace(/[^A-Z]/g,'').length/letters.length>.6){add(-5,'Shouting');shout=true;sus+=5}
- if(words.length<2){add(-3,'Too short');shortMsg=true}
- else if(words.length>45)add(-2,'Rambling');
- else if(text.length>=6&&(letters.replace(/[^aeiou]/gi,'').length/Math.max(1,letters.length))<.2)add(-4,'Gibberish');
- else add(1,'Coherent');
- const set=new Set(words);
- for(const h of C.hist.slice(-3)){const inter=[...set].filter(x=>h.has(x)).length,uni=new Set([...set,...h]).size;if(uni&&inter/uni>.65&&words.length>2){add(-6,'Repeating yourself');repeat=true;break}}
- C.hist.push(set);
- // beats
- P.beats.forEach((b,i)=>{if(!C.beats[i]&&b.re.test(low)){C.beats[i]=true;add(4,'★ '+b.l)}});
- // suspicion
- sus+=f.pressure*7+f.threat*18+f.rude*6+(W.flatter<0?f.flatter*4:0)+f.jargon*2;
- sus-=f.empathy*3+f.proof*(P.id==='brenda'?5:3)+f.polite*1;
- if(sus>0)sus*=P.susMul||1;
- d=clamp(d,-20,16);sus-=Math.max(0,d)*.3;
- return{d,tags,sus,early,shout,shortMsg,repeat,f};
-}
+/* ---------- remote desktop ---------- */
+const vs=h=>{const e=$('#vs');if(e)e.innerHTML=h};
+function fill(s,h){if(!s)return;const v=s.value;s.innerHTML=h;s.value=v;if(s.selectedIndex<0)s.selectedIndex=0}
+function grab(t,f){sfx('loot');f.took=true;S.stolen++;S.loot.push({id:++S.lid,n:f.n,val:f.val,from:t.n,ip:t.ip,kb:f.kb||400});
+ const c=S.cont.find(c=>c.state==='active'&&c.t.ip===t.ip&&c.file===f.n);
+ if(c){sfx('cash');c.state='done';const rw=Math.round(c.reward*incM());S.$+=rw;mail(c.who+' <'+c.who.toLowerCase().replace(/\W/g,'')+'@null.sys>','Payment received: '+f.n,`Delivery confirmed. $${rw} wired to your wallet. Pleasure doing business.`);}}
+function fx(){const t=S.cur,l=$('#fxl');if(!t||!l)return;let h='<b>📂 Documents</b>';
+ if(t.st==='destroyed')h+='<div class="grow">💀 PC bricked. Nothing left.</div>';
+ else t.f.forEach((f,i)=>h+=`<div class="grow">📄 ${f.n} <i>$${f.val}</i> `+(f.took?'[copied]':t.st==='infected'?`<button data-c="${i}">Copy to my PC</button>`:t.st==='ransomed'?'[encrypted]':'<i>(no access — install a siphon or trojan)</i>')+'</div>');
+ h+='<br><b>📂 Downloads</b>';t.dl.forEach((d,i)=>h+=`<div class="grow">${d.un?'⚙ setup.exe':'🗜 '+d.n} [${d.mods.join('+')}] `+(d.ran?'[ran]':d.un?`<button data-r="${i}">Run</button>`:`<button data-u="${i}">Unzip</button>`)+'</div>');
+ if(!t.dl.length)h+='<div class="m">empty — use “Send file” above</div>';l.innerHTML=h}
+function run(i){const t=S.cur,d=t.dl[i],m=d.mods;
+ if(t.st==='destroyed'||t.st==='ransomed')return vs('Machine already compromised.');
+ if((t.av>=1&&!m.includes('STEALTH'))||(t.av>=2&&!m.includes('TROJAN')&&!(has('E2')&&m.includes('STEALTH')))){t.dl.splice(i,1);sfx('alarm');tt(t,25);pushNews(t.n+' antivirus quarantines suspicious file');return vs('<span class="w">🛡 Antivirus quarantined the file! Trace spiked.</span>')}
+ d.ran=true;S.hacked++;
+ if(m.includes('DESTROYER')){sfx('boom');t.st='destroyed';t.f.forEach(f=>{if(!f.took)grab(t,f)});tt(t,30);pushNews(t.n+' workstation fleet bricked in apparent attack');vs('💀 PC destroyed. All files grabbed — sell them!')}
+ else if(m.includes('RANSOM')){sfx('ransom');t.st='ransomed';const b=+(t.w/250*rnd(.8,1.2)*incM()).toFixed(2);S.btc=+(S.btc+b).toFixed(2);tt(t,12);pushNews(t.n+' systems locked; ransom note demands bitcoin');vs('🔒 Files encrypted. Ransom paid: ₿'+b)}
+ else{sfx('install');t.st='infected';t.silent=m.includes('TROJAN');tt(t,t.silent?2:(has('E1')?3:6));pushNews(t.n+' investigating irregular activity on internal servers');vs(t.silent?'🐴 Trojan installed — silent access. Copy files!':'Siphon installed (noisy). Copy files!')}
+ expose(t);refresh()}
+reg('rdp',{icon:'▤',title:'Remote Desktop',size:[700,460],
+ init(b){b.innerHTML=`<div class="pad"><div>Remote Desktop Control — only cracked machines appear here.</div>
+ <div class="bar2" style="border:0;padding:0"><select id="rsel"></select> <button id="rcon">Connect</button> <span id="rtool" style="display:none"><select id="rp"></select> <button id="rup">Send file</button> <button id="rdis">Disconnect</button></span></div></div>
+ <div id="vd"><div id="vbar">🖥 <b id="vt"></b> — <span id="vs">connected</span></div>
+ <div id="vdesk"><div class="ic" id="icx">📁<br>File Explorer</div><div class="ic" id="ica">🛡<br>Antivirus</div>
+ <div class="gw" id="fx"><div class="gt">File Explorer <button id="fxx">✕</button></div><div id="fxl"></div></div></div><div id="vtask">⊞ Start</div></div>`;
+  const q=s=>b.querySelector(s);
+  q('#rcon').onclick=()=>{const t=byIp(q('#rsel').value);if(!t)return;if(isOff(t))return notify(t.n+' is offline for '+Math.ceil((t.off-Date.now())/1000)+'s');S.cur=t;q('#vd').style.display='flex';q('#rtool').style.display='inline';q('#vt').textContent=t.n+' ('+t.ip+')';q('#fx').style.display='none';vs('connected');tt(t,2)};
+  q('#rdis').onclick=()=>{S.cur=null;q('#vd').style.display='none';q('#rtool').style.display='none'};
+  q('#icx').onclick=()=>{q('#fx').style.display='block';fx()};q('#fxx').onclick=()=>q('#fx').style.display='none';
+  q('#ica').onclick=()=>{if(S.cur)vs('🛡 Antivirus: '+['not installed','heuristic scanner active','heuristic + behaviour guard active'][S.cur.av])};
+  q('#rup').onclick=()=>{const p=S.pay[q('#rp').value],t=S.cur;if(!p||!t)return;if(isOff(t))return vs('<span class="w">Services offline.</span>');t.dl.push({n:p.n,mods:p.m,un:false,ran:false});tt(t,3);expose(t);vs('📥 '+p.n+' sent to Downloads');fx()};
+  q('#fxl').onclick=e=>{const d=e.target.dataset,t=S.cur;if(!t)return;
+   if(isOff(t)){vs('<span class="w">Services offline — try again shortly.</span>');return}
+   if(d.u!==undefined){t.dl[+d.u].un=true;tt(t,1)}
+   else if(d.c!==undefined){const f=t.f[+d.c];grab(t,f);tt(t,t.silent?1:(has('E1')?2:4));expose(t);vs('Copied '+f.n+' — sell it in the Browser or File Manager.')}
+   else if(d.r!==undefined)run(+d.r);
+   refresh()};
+  if(S.cur){q('#vd').style.display='flex';q('#rtool').style.display='inline';q('#vt').textContent=S.cur.n+' ('+S.cur.ip+')'}},
+ update(b){fill(b.querySelector('#rsel'),S.known.filter(t=>S.cracked.has(t.ip)).map(t=>`<option value="${t.ip}">${t.n} (${t.ip}) [${t.st}${isOff(t)?' · OFFLINE':''}]</option>`).join('')||'<option value="">no cracked machines</option>');
+  fill(b.querySelector('#rp'),S.pay.map((p,i)=>`<option value="${i}">${esc(p.n)} [${p.m.join('+')}]</option>`).join('')||'<option value="">no archives</option>');fx()},
+ close(){S.cur=null}});
 
-/* ---------- send ---------- */
-function send(){
- if(!C||C.over||C.busy)return;
- const inp=$('#in'),text=inp.value.trim();if(!text)return;inp.value='';
- const P=C.P,r=analyze(text);
- const before=C.trust;
- C.trust=clamp(C.trust+r.d,0,100);C.sus=clamp(C.sus+r.sus,0,100);C.lastD=r.d;
- const pd=r.d>=3?6:r.d>=0?1:r.d*1.4;C.patience=clamp(C.patience+pd,0,150);
- r.tags.forEach(t=>{C.tagStat[t.t]=(C.tagStat[t.t]||0)+t.v});
- const dr=Math.round(r.d);
- C.msgs.push({from:'y',text});
- addMsg('y',text,[{t:'Trust',v:dr},...r.tags]);
- tone(dr>=0?740:240,.12,dr>=0?'sine':'sawtooth',.05);
- $('#ana').innerHTML=`<div style="margin-bottom:4px">Last message: <b style="color:${dr>=0?'var(--green)':'var(--red)'}">${dr>=0?'+':''}${dr} trust</b></div>`+r.tags.map(x=>`<span class="tag ${x.v>0?'p':x.v<0?'n':'z'}">${x.v>0?'+':''}${x.v} ${x.t}</span>`).join('')||'';
- setBeats();renderHUD();renderChips();
- // decide reply
- let key,ending=null;
- if(C.trust<=0){key='lose';ending='trust'}
- else if(C.sus>=100){key='sus';ending='sus'}
- else if(r.f.threat)key='threat';
- else if(r.f.rude)key='rude';
- else if(r.early&&r.f.pitch)key='early';
- else if(r.repeat)key='repeat';
- else if(r.shout)key='shout';
- else if(r.shortMsg)key='short';
- else if(C.trust>=80&&!C.c80){key='buy';C.c80=true}
- else if(C.trust>=60&&!C.c60){key='invite';C.c60=true}
- else key=r.d>=7?'great':r.d>=3?'good':r.d>-2?'ok':r.d>-8?'bad':'awful';
- if(C.trust>=60)C.c60=true;
- const reply=genLine(P,key,text,r);
- callerSay(reply,500,()=>{
-  if(ending){finish(ending,true);return}
-  if(C.trust>=80&&before<80)addMsg('s','★ Trust hit 80%! The sale is yours. Hang up before you ruin it!');
-  else if(C.trust<80&&before>=80)addMsg('s','Trust dropped below 80%. Fix it, or the sale is gone.');
-  $('#in').focus();
- });
-}
-$('#send').onclick=send;$('#in').addEventListener('keydown',e=>{if(e.key==='Enter')send()});
-$('#bHang').onclick=()=>{if(!C||C.over)return;if(C.trust>=80)finish('win');else finish('hung')};
+/* ---------- payload builder ---------- */
+reg('vir',{icon:'☣',title:'Virus Installer',size:[460,400],
+ init(b){b.innerHTML=`<div class="pad"><div>Builds a harmless, fictional payload archive. No real code is created.</div>
+ <div class="box"><input id="vn" value="payload1" size="14">.zip<div id="mods"></div><button id="vb">Compress &amp; seal</button> <span id="vp"></span></div>
+ <div class="box"><b>Archives</b><div id="vl" class="m">none</div></div></div>`;
+  b.querySelector('#vb').onclick=()=>{const m=[...b.querySelectorAll('#mods input:checked')].map(i=>i.value);if(!m.length)return b.querySelector('#vp').textContent='Pick at least one module.';
+   const n=b.querySelector('#vn').value.trim()||'payload';
+   job('zip '+n+'.zip',1000,()=>{S.pay.push({id:++S.pid,n:n+'.zip',m});sfx('success');const vp=$('#vp');if(vp)vp.textContent='sealed.';const vn=$('#vn');if(vn)vn.value='payload'+(S.pay.length+1);addTrace(1);refresh()},p=>{const vp=$('#vp');if(vp)vp.textContent='zipping '+p+'%'})}},
+ update(b){const ck=[...b.querySelectorAll('#mods input:checked')].map(i=>i.value);
+  b.querySelector('#mods').innerHTML=Object.entries(MODS).map(([k,d])=>S.own.has(k)?`<div><label><input type="checkbox" value="${k}"${ck.includes(k)?' checked':''}> ${k} – ${d}</label></div>`:`<div class="m">🔒 ${k} – ${d} (buy in the Browser: shadow.market)</div>`).join('');
+  b.querySelector('#vl').innerHTML=S.pay.length?S.pay.map(p=>`${esc(p.n)}: ${p.m.join(' + ')}`).join('<br>'):'none'}});
 
-/* ---------- end of call ---------- */
-const LOSE_NOTES=["Your supervisor sighed audibly from across the office.","The call has been flagged “Learning Opportunity.”","Somewhere, a quota missed you personally.","HR has added a sad face to your file."];
-function finish(kind,already){
- if(C.over)return;C.over=true;clearInterval(tick);
- if(window.speechSynthesis)speechSynthesis.cancel();
- const P=C.P;
- const go=()=>{
-  const win=kind==='win';let pay=0;
-  if(win){pay=Math.round(60+(C.trust-80)*3+Math.max(0,C.patience)*.5);G.sales++;G.money+=pay;tone(523,.12,'triangle',.06);tone(659,.12,'triangle',.06,.12);tone(784,.2,'triangle',.06,.24)}
-  else{tone(300,.2,'sawtooth',.05);tone(200,.3,'sawtooth',.05,.2)}
-  const arr=Object.entries(C.tagStat).filter(([k])=>!k.startsWith('★')&&k!=='Trust');
-  arr.sort((a,b)=>b[1]-a[1]);
-  const best=arr.length&&arr[0][1]>0?arr[0]:null,worst=arr.length&&arr[arr.length-1][1]<0?arr[arr.length-1]:null;
-  const why={trust:`${P.short} lost all trust and hung up.`,sus:`${P.short} got suspicious and threatened to report you.`,patience:`${P.short} ran out of patience and hung up.`,hung:'You hung up before reaching 80% trust. No sale.',win:`Sale closed: ${P.product}.`}[kind];
-  const last=G.i>=G.order.length-1;
-  $('#res').className='res '+(win?'win':'lose');
-  $('#res').innerHTML=`<div class="ic">${win?'💰':'📵'}</div><h2>${win?'SALE CLOSED!':'Call lost'}</h2>
-  <div class="note"><b>${why}</b><br>${win?P.win:pick(LOSE_NOTES)}</div>
-  <div class="stats"><div><b>${Math.round(C.trust)}%</b>Final trust</div><div><b>${win?'+$'+pay:'$0'}</b>Commission</div><div><b>${Math.round(C.sus)}%</b>Suspicion</div></div>
-  <div class="note" style="font-size:12.5px;color:#8da7a6">${best?`Best move: ${best[0]} (+${best[1]})`:''}${best&&worst?' · ':''}${worst?`Worst: ${worst[0]} (${worst[1]})`:''}</div>
-  <button class="big" id="bNext">${last?'See Shift Report':'Next Call'}</button>`;
-  $('#over').classList.add('on');
-  $('#bNext').onclick=()=>{G.i++;last?report():nextRing()};
- };
- if(kind==='win'||kind==='hung'){setTimeout(go,300)}else setTimeout(go,already?900:300);
-}
-function report(){
- const s=G.sales;
- const rank=s===0?['🗑️','Unemployed','Your headset has been reassigned to Gary.']:s<=2?['😬','Probationary Employee','You survive on vending machine snacks and fear.']:s<=4?['😎','Top Closer','You get the corner office. It is a closet, but it has a door.']:['🏆','Employee of the Month','The Ethics Department is on a permanent coffee break. Your plaque is already misspelled.'];
- $('#res').className='res';
- $('#res').innerHTML=`<div class="ic">${rank[0]}</div><h2>Shift Report</h2><div class="note"><b>${rank[1]}</b><br>${rank[2]}</div>
- <div class="stats"><div><b>${s}/${G.order.length}</b>Sales</div><div><b>$${G.money}</b>Commission</div></div>
- <div class="note" style="font-size:12px;color:#8da7a6">Satire only. Real customers deserve honesty, and real scams are crimes. Report fraud at reportfraud.ftc.gov</div>
- <button class="big" id="bAgain">New Shift</button>`;
- $('#over').classList.add('on');
- $('#bAgain').onclick=()=>{$('#over').classList.remove('on');G={order:shuffle(PERSONAS),i:0,sales:0,money:0};nextRing()};
-}
-</script>
+/* ---------- market actions (shared by browser + file manager) ---------- */
+function sell(id){const i=S.loot.findIndex(l=>l.id===id);if(i<0)return;const l=S.loot.splice(i,1)[0];sfx('cash');S.$+=Math.round(l.val*S.mk*incM());addTrace(1)}
+function sellAll(){if(S.loot.length)sfx('cash');S.loot.forEach(l=>S.$+=Math.round(l.val*S.mk*incM()));if(S.loot.length)addTrace(2);S.loot=[]}
+function buy(i){const s=SHOP[i];if(s.c==='₿'?S.btc<s.p:S.$<s.p)return notify('Not enough funds');if(s.c==='₿')S.btc=+(S.btc-s.p).toFixed(2);else S.$-=s.p;sfx('buy');if(s.k==='VPN')addTrace(-30);else S.own.add(s.k)}
+function lead(type){const vip=type==='vip',cost=vip?350:120;if(S.$<cost)return notify('Not enough $');S.$-=cost;sfx('buy');const t=gen(rnd(-50,60),rnd(-160,170),null,vip?2.2:1);S.known.push(t);notify('Lead acquired: '+t.ip);pr(`lead purchased: ${t.ip} ${t.n} [${t.lat},${t.lon}]`);addTrace(1)}
+function exch(code){const buyM=code[0]==='b',amt=+code.slice(1),cost=Math.round(amt*S.rate);
+ if(buyM){if(S.$<cost)return notify('Not enough $');S.$-=cost;S.btc=+(S.btc+amt).toFixed(2)}else{if(S.btc<amt-1e-9)return notify('Not enough ₿');S.btc=+(S.btc-amt).toFixed(2);S.$+=cost}sfx('buy');addTrace(1)}
 
+/* ---------- browser ---------- */
+const PAGES={
+ 'search.null':()=>`<h3>NULL//SEARCH</h3><div class="m">The only search engine that does not remember you.</div><ul>
+ <li><a data-go="shadow.market">shadow.market</a> – sell stolen files, black shop</li>
+ <li><a data-go="leaks.onion">leaks.onion</a> – buy leads on new victims</li>
+ <li><a data-go="coinswap.null">coinswap.null</a> – exchange $ and ₿</li>
+ <li><a data-go="nullnews.net">nullnews.net</a> – what the world says about your work</li></ul>`,
+ 'shadow.market':()=>`<h3>☠ SHADOW MARKET</h3><div class="m">market ×${S.mk}</div><h4>Stolen files</h4>${S.loot.length?S.loot.map(l=>`<div class="it">${esc(l.n)} <span class="m">(${esc(l.from)})</span> $${Math.round(l.val*S.mk*incM())} <button data-s="${l.id}">Sell</button></div>`).join(''):'<div class="m">No stolen files yet.</div>'}<br><button data-sall="1">Sell all</button>
+ <h4>Black shop</h4>${SHOP.map((s,i)=>S.own.has(s.k)?`<div class="m">${s.k} — owned</div>`:`<div class="it">${s.k} ${s.d||''} <button data-b="${i}">Buy ${s.c}${s.p}</button></div>`).join('')}`,
+ 'leaks.onion':()=>`<h3>LEAKS.ONION</h3><div class="m">Fresh addresses, no questions.</div>
+ <div class="it">Standard lead — one random victim <button data-lead="std">Buy $120</button></div>
+ <div class="it">VIP lead — richer victim (≈×2 wealth) <button data-lead="vip">Buy $350</button></div>
+ <div class="m">Purchased leads appear on the Maps and in the Terminal list.</div>`,
+ 'coinswap.null':()=>`<h3>COINSWAP</h3><div>Rate: <b class="y">₿1 = $${S.rate}</b></div><div class="m">You hold $${S.$} · ₿${S.btc.toFixed(2)}</div><br>
+ <div class="it">Buy: <button data-fx="b.1">₿0.1</button><button data-fx="b1">₿1</button></div>
+ <div class="it">Sell: <button data-fx="s.1">₿0.1</button><button data-fx="s1">₿1</button></div>`,
+ 'nullnews.net':()=>`<h3>NULLNEWS</h3>${S.news.length?S.news.map(n=>`<div class="it"><span class="m">${n.t}</span> ${esc(n.h)}</div>`).join(''):'<div class="m">Nothing to report.</div>'}`
+};
+function go(o,u,nohist){u=u.trim().toLowerCase().replace(/^https?:\/\//,'').replace(/\/+$/,'');if(!nohist){o.h=o.h.slice(0,o.i+1);o.h.push(u);o.i=o.h.length-1}
+ const bar=o.el.querySelector('.bu');if(bar)bar.value=u;refreshApp('browser')}
+reg('browser',{icon:'🌐',title:'Browser',size:[620,440],
+ init(b,o){o.h=['search.null'];o.i=0;b.innerHTML='<div class="bar2"><button class="bk">◀</button><button class="fw">▶</button><button class="hm">⌂</button><input class="bu" style="flex:1;min-width:120px" spellcheck="false"></div><div class="bpage"></div>';
+  b.querySelector('.bk').onclick=()=>{if(o.i>0){o.i--;go(o,o.h[o.i],1)}};b.querySelector('.fw').onclick=()=>{if(o.i<o.h.length-1){o.i++;go(o,o.h[o.i],1)}};b.querySelector('.hm').onclick=()=>go(o,'search.null');
+  b.querySelector('.bu').addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')go(o,e.target.value)});
+  b.querySelector('.bpage').onclick=e=>{const d=e.target.dataset;
+   if(d.go)return go(o,d.go);
+   if(d.s)sell(+d.s);else if(d.sall)sellAll();else if(d.b!==undefined)buy(+d.b);else if(d.lead)lead(d.lead);else if(d.fx)exch(d.fx);else return;
+   refresh()}},
+ update(b,o){const u=o.h[o.i],bar=b.querySelector('.bu');if(document.activeElement!==bar)bar.value=u;
+  b.querySelector('.bpage').innerHTML=PAGES[u]?PAGES[u]():`<h3>Host unreachable</h3><div class="w">${esc(u)} does not resolve.</div><a data-go="search.null">back to search</a>`}});
+
+/* ---------- mail ---------- */
+reg('mail',{icon:'✉',title:'Mail',size:[640,400],
+ init(b,o){o.sel=null;b.innerHTML='<div class="ml"><div class="mlist"></div><div class="mread"></div></div>';
+  b.onclick=e=>{const it=e.target.closest('[data-mid]'),a=e.target.dataset;
+   if(it){o.sel=+it.dataset.mid;const m=S.mail.find(x=>x.id===o.sel);if(m)m.read=true;refresh();return}
+   if(a.acc){const c=S.cont.find(x=>x.id===+a.acc);if(c&&c.state==='offer'){c.state='active';S.known.push(c.t);notify('Contract accepted — target added');pr(`contract target: ${c.t.ip} ${c.t.n} [${c.t.lat},${c.t.lon}]`);refresh()}}
+   if(a.del){S.mail=S.mail.filter(x=>x.id!==+a.del);o.sel=null;refresh()}}},
+ update(b,o){b.querySelector('.mlist').innerHTML=S.mail.length?S.mail.map(m=>`<div class="it ${m.id===o.sel?'sel':''} ${m.read?'':'unr'}" data-mid="${m.id}" style="flex-direction:column;align-items:flex-start;gap:0"><span>${m.read?'':'● '}${esc(m.subj)}</span><span class="m">${esc(m.from)} · ${m.t}</span></div>`).join(''):'<div class="m pad">Inbox empty.</div>';
+  const m=S.mail.find(x=>x.id===o.sel),r=b.querySelector('.mread');
+  if(!m){r.innerHTML='<span class="m">Select a message.</span>';return}
+  const c=m.c&&S.cont.find(x=>x.id===m.c);
+  r.innerHTML=`<b>${esc(m.subj)}</b>\n<span class="m">From: ${esc(m.from)} · ${m.t}</span>\n\n${esc(m.body)}\n\n`+(c?(c.state==='offer'?`<button data-acc="${c.id}">Accept contract</button> `:c.state==='active'?`<span class="y">Contract active: copy ${esc(c.file)} from ${esc(c.t.n)} (${c.t.ip})</span> `:'<span class="m">Contract completed.</span> '):'')+`<button data-del="${m.id}">Delete</button>`}});
+
+/* ---------- file manager ---------- */
+const NOTES='NULLROUTE FIELD NOTES\n\n· Scan from Maps, crack from Terminal.\n· Antivirus L1 needs STEALTH; L2 needs STEALTH + TROJAN.\n· Ransomware pays bitcoin; swap it at coinswap.null.\n· Accept contracts in Mail for bigger payouts.\n· Watch Trace in the Network Analyzer and System Monitor.\n\nSECURITY POSTURES (probe/recon to reveal):\n· VIGILANT: trace costs ×1.8, live sessions are watched. Be quick.\n· AGGRESSIVE: launches countermeasures; kill them in System Monitor or lose your payload.\n· REACTIVE: pulls services offline after you expose them. Wait it out. Trojans stay quiet.\n· ★HVT: recon, proxy 2+, then crack inside the patch window. One try; failure = lockdown.\n\nUPGRADES: spend $ and ₿ in the Upgrades app. Bitcoin tiers (gold) are the strongest.';
+reg('files',{icon:'🗂',title:'File Manager',size:[660,420],
+ init(b,o){o.path='loot';o.sel=null;
+  b.innerHTML='<div class="fm"><div class="fside"><button data-p="loot">📄 Loot</button><button data-p="pay">🗜 Payloads</button><button data-p="tools">⚙ Tools</button><button data-p="notes">📝 Notes</button></div><div class="fmain"><div class="bar2 fpath"></div><div class="flist"></div><div class="fdet"></div></div></div>';
+  b.onclick=e=>{const d=e.target.dataset,it=e.target.closest('[data-k]');
+   if(d.p){o.path=d.p;o.sel=null}
+   else if(it){o.sel=it.dataset.k}
+   else if(d.sell){sell(+d.sell);o.sel=null}
+   else if(d.del){if(o.path==='loot')S.loot=S.loot.filter(l=>l.id!==+d.del);else S.pay=S.pay.filter(p=>p.id!==+d.del);o.sel=null}
+   else if(d.ren){const v=b.querySelector('.rn').value.trim(),p=S.pay.find(x=>x.id===+d.ren);if(p&&v)p.n=v.replace(/\.zip$/i,'')+'.zip'}
+   else return;
+   refresh()};
+  b.addEventListener('keydown',e=>e.stopPropagation(),true)},
+ update(b,o){const f=o.path;let items=[];
+  if(f==='loot')items=S.loot.map(l=>({k:l.id,n:l.n,a:l.from,s:fmtKB(l.kb),v:'$'+Math.round(l.val*S.mk*incM()),ic:'📄'}));
+  else if(f==='pay')items=S.pay.map(p=>({k:p.id,n:p.n,a:p.m.join('+'),s:(p.m.length*120+40)+' KB',v:'',ic:'🗜'}));
+  else if(f==='tools')items=[...S.own].map(k=>({k,n:k,a:MODS[k]||'utility',s:'—',v:'',ic:'⚙'}));
+  else items=[{k:'n',n:'notes.txt',a:'',s:'1 KB',v:'',ic:'📝'}];
+  b.querySelectorAll('.fside button').forEach(x=>x.classList.toggle('on',x.dataset.p===f));
+  b.querySelector('.fpath').textContent='/home/nullroute/'+f+'  ('+items.length+' item'+(items.length===1?'':'s')+')';
+  b.querySelector('.flist').innerHTML=items.length?items.map(i=>`<div class="it ${String(i.k)===String(o.sel)?'sel':''}" data-k="${i.k}"><span>${i.ic} ${esc(i.n)}</span><span class="m">${esc(i.a)}</span><span class="m" style="margin-left:auto">${i.s} ${i.v}</span></div>`).join(''):'<div class="m pad">empty</div>';
+  const s=items.find(i=>String(i.k)===String(o.sel)),d=b.querySelector('.fdet');
+  if(!s){d.innerHTML='<span class="m">Select a file.</span>';return}
+  if(f==='loot')d.innerHTML=`<b>${esc(s.n)}</b> · ${s.s} · from ${esc(s.a)}<br>Est. value ${s.v}<br><button data-sell="${s.k}">Sell</button> <button data-del="${s.k}">Delete</button>`;
+  else if(f==='pay')d.innerHTML=`<b>${esc(s.n)}</b> · modules ${s.a}<br><input class="rn" value="${esc(s.n.replace(/\.zip$/,''))}" size="14"> <button data-ren="${s.k}">Rename</button> <button data-del="${s.k}">Delete</button>`;
+  else if(f==='tools')d.innerHTML=`<b>${esc(s.n)}</b><br>${esc(s.a)}`;
+  else d.innerHTML='<div style="white-space:pre-wrap">'+esc(NOTES)+'</div>'}});
+
+/* ---------- system monitor ---------- */
+reg('mon',{icon:'📈',title:'System Monitor',size:[560,440],live:1,
+ init(b){b.innerHTML='<div class="mon"><div class="box"><b>Load</b><div>CPU <span class="cp"></span></div><div class="bar"><div class="cb"></div></div><div>RAM <span class="rp2"></span></div><div class="bar"><div class="rb"></div></div><div class="m st"></div></div><div class="box"><b>Trace history</b><canvas class="tc" width="300" height="90" style="width:100%"></canvas></div></div><div class="pad"><b>Processes</b><div class="pl"></div></div>';
+  b.onclick=e=>{const k=e.target.dataset.kill;if(k===undefined)return;const j=S.jobs.find(x=>x.id===+k);if(j){j.kill();pr('job killed: '+j.name,'w');if(j.cm){addTrace(-3);sfx('block');notify('Countermeasure neutralised')}refresh()}}},
+ update(b){const jn=S.jobs.length,cpu=Math.min(99,Math.round(8+jn*22+Math.random()*8)),ram=Math.min(99,Math.round(25+Object.keys(WIN).length*6+jn*4));
+  b.querySelector('.cp').textContent=cpu+'%';b.querySelector('.cb').style.width=cpu+'%';b.querySelector('.rp2').textContent=ram+'%';b.querySelector('.rb').style.width=ram+'%';
+  const up=Math.floor((Date.now()-S.t0)/1000);b.querySelector('.st').textContent=`uptime ${Math.floor(up/60)}m${up%60}s · hit ${S.hacked} · files ${S.stolen} · hops ${S.hops}`;
+  const c=b.querySelector('.tc'),x=c.getContext('2d');x.fillStyle='#04150d';x.fillRect(0,0,300,90);x.strokeStyle='#0f4a2c';[25,50,75].forEach(v=>{x.beginPath();x.moveTo(0,90-v*.9);x.lineTo(300,90-v*.9);x.stroke()});
+  x.strokeStyle=S.trace>70?'#ff4d4d':'#33ff99';x.beginPath();S.hist.forEach((v,i)=>{const px=i*5,py=90-v*.9;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();
+  const sys=['nullroute.sys','kernel','render3d'].concat(S.hops?['proxyd ×'+S.hops]:[]),wins=Object.keys(WIN).map(id=>APPS[id].title.toLowerCase());
+  b.querySelector('.pl').innerHTML=sys.concat(wins).map(n=>`<div class="it m">${esc(n)}</div>`).join('')+S.jobs.map(j=>`<div class="it">⚙ ${esc(j.name)} <span class="y">${j.p}%</span> <button data-kill="${j.id}">Kill</button></div>`).join('')}});
+
+/* ---------- network analyzer ---------- */
+function pkt(){if(S.over)return;const hot=[...S.cracked],link=hot.length&&Math.random()<.4,src=link?pick(hot):randIp(),flag=S.trace>35&&Math.random()<S.trace/220;
+ S.pk.unshift({id:++S.pkid,t:clock(),proto:pick(['TCP','UDP','HTTPS','DNS','ICMP','SSH']),src,dst:link?'YOU':randIp(),len:rnd(40,1500)|0,flag,blocked:false});if(S.pk.length>80)S.pk.pop()}
+reg('net',{icon:'📡',title:'Network Analyzer',size:[700,480],live:1,
+ init(b,o){o.pause=false;o.fl='';o.insp={};
+  b.innerHTML='<div class="bar2">Proxy hops: <select class="hp"><option>0</option><option>1</option><option>2</option><option>3</option></select> <input class="nf" placeholder="filter…" size="12"> <button class="np">Pause</button> <span class="m nst"></span></div><div class="npk"></div><div class="nt"></div>';
+  b.querySelector('.hp').onchange=e=>{S.hops=+e.target.value;refresh()};
+  b.querySelector('.nf').addEventListener('keydown',e=>e.stopPropagation());b.querySelector('.nf').oninput=e=>{o.fl=e.target.value.toLowerCase();APPS.net.update(b,o)};
+  b.querySelector('.np').onclick=e=>{o.pause=!o.pause;e.target.classList.toggle('on',o.pause);e.target.textContent=o.pause?'Resume':'Pause'};
+  b.onclick=e=>{const d=e.target.dataset;
+   if(d.k){const p=S.pk.find(x=>x.id===+d.k);if(p&&!p.blocked){p.blocked=true;sfx('block');addTrace(-2);refresh()}}
+   else if(d.i){if(!o.insp[d.i]){o.insp[d.i]=1;const q2=byIp(d.i);if(q2)q2.known=true;addTrace(1)}refresh()}
+   else if(d.rc){C.recon([d.rc])}}},
+ update(b,o){const hp=b.querySelector('.hp');if(document.activeElement!==hp)hp.value=S.hops;
+  b.querySelector('.nst').textContent=`flagged: ${S.pk.filter(p=>p.flag&&!p.blocked).length} · trace ${S.trace}%`;
+  if(!o.pause)b.querySelector('.npk').innerHTML=S.pk.filter(p=>!o.fl||(p.proto+p.src+p.dst).toLowerCase().includes(o.fl)).slice(0,40).map(p=>`<div class="pk ${p.flag?'w':''}">${p.t} ${p.proto.padEnd(5)} ${p.src} → ${p.dst} ${p.len}B ${p.flag?(p.blocked?'[blocked]':`ALERT <button data-k="${p.id}">Block</button>`):''}</div>`).join('');
+  b.querySelector('.nt').innerHTML='<b>Known hosts</b><table class="tb">'+(S.known.length?S.known.map(t=>`<tr><td>${t.ip}</td><td>${esc(t.n)}</td><td>${t.st}${isOff(t)?' · OFFLINE':''}<br><span class="m">${tag(t)}${hv(t)}</span></td><td>${o.insp[t.ip]?`FW L${t.fw} · AV L${t.av} · $${t.w}`:`<button data-i="${t.ip}">Inspect</button>`} ${t.hvt&&!S.cracked.has(t.ip)?`<button data-rc="${t.ip}">Recon</button>`:''}</td></tr>`).join(''):'<tr><td class="m">none — scan first</td></tr>')+'</table>'}});
+
+/* ---------- upgrades app ---------- */
+reg('upg',{icon:'⬆',title:'Upgrades',size:[800,500],
+ init(b){b.innerHTML='<div class="pad"><div class="uhd"></div><div class="ugrid"></div></div>';b.onclick=e=>{const id=e.target.dataset.up;if(id)buyUp(id)}},
+ update(b){b.querySelector('.uhd').innerHTML=`Wallet: <b class="y">$${S.$} · ₿${S.btc.toFixed(2)}</b> <span class="m">· gold ₿ tiers are the strongest · installed ${S.up.size}/${UPG.length}</span>`;
+  b.querySelector('.ugrid').innerHTML=UBR.map(([k,lab])=>`<div class="ub"><h4>${lab}</h4>`+UPG.filter(u=>u.b===k).map(u=>{const own=has(u.id),open=u.req.every(has),can=u.c==='₿'?S.btc>=u.p:S.$>=u.p;
+   return`<div class="un ${own?'own':''} ${!own&&!open?'lk':''} ${u.c==='₿'?'btc':''}"><b>${own?'✔ ':''}${u.n}</b><span class="m">${u.d}</span>`+(own?'<span>installed</span>':open?`<button data-up="${u.id}" ${can?'':'disabled'}>Buy ${u.c}${u.p}</button>`:`<span class="w">needs ${u.req.filter(x=>!has(x)).map(x=>UPG.find(y=>y.id===x).n).join(', ')}</span>`)+'</div>'}).join('')+'</div>').join('')}});
+
+/* ---------- desktop shell setup ---------- */
+const ORDER=['term','maps','rdp','vir','upg','files','browser','mail','mon','net'];
+$('#icons').innerHTML=ORDER.map(id=>`<div class="dic" data-o="${id}"><span class="i">${APPS[id].icon}</span>${APPS[id].title}</div>`).join('');
+/* shrink the icon column just enough that every icon fits in one column */
+function fitIcons(){const d=$('#desk').clientHeight;if(!d)return;const k=Math.min(1,Math.max(.55,(d-16-4*(ORDER.length-1)-4)/(ORDER.length*61)));$('#icons').style.fontSize=(12*k)+'px'}
+addEventListener('resize',fitIcons);
+$('#smenu').innerHTML=ORDER.map(id=>`<button data-o="${id}">${APPS[id].icon} ${APPS[id].title}</button>`).join('')+'<button data-x>⏻ Stand up</button>';
+setInterval(()=>{$('#clk').textContent=clock()},5000);$('#clk').textContent=clock();
+
+/* ---------- starting content & timers ---------- */
+mail('The Fixer <fixer@null.sys>','Welcome to NULLROUTE OS','Everything you need is on the desktop:\n\n▣ Terminal – scan, probe, crack\n◎ Maps – pick regions to scan\n▤ Remote Desktop – work on cracked machines\n☣ Virus Installer – build payloads\n🗂 File Manager – loot, payloads, notes\n🌐 Browser – sell files, buy tools\n✉ Mail – contracts and warnings\n📈 System Monitor / 📡 Network Analyzer – keep trace down\n\nLoot first, get greedy later.');
+newContract();
+S.mail.forEach(m=>{});
+setInterval(()=>{if(!S.over&&S.cont.filter(c=>c.state==='offer').length<3)newContract()},75000);
+setInterval(()=>{if(!S.over)addTrace(-decay())},3000);
+setInterval(()=>{S.mk=+rnd(.7,1.4).toFixed(2);S.rate=Math.round(Math.max(300,Math.min(520,S.rate+rnd(-40,40))));refresh()},15000);
+setInterval(pkt,800);
+setInterval(()=>{if(S.over)return;S.known.forEach(t=>{
+ if(t.pers==='VIGILANT'&&S.cur===t&&!t.silent){addTrace(2);if(Math.random()<.2)pr('SOC is watching the live session on '+t.ip+' — be quick.','w')}
+ if(t.pers==='AGGRESSIVE'&&t.st!=='destroyed'&&t.st!=='ransomed'&&(S.cur===t||(t.st==='infected'&&!t.silent))&&!S.jobs.some(j=>j.cm===t.ip)&&Math.random()<(t.silent?.08:.3)*(has('F1')?.6:1))countermeasure(t)})},4000);
+setInterval(()=>{S.hist.push(S.trace);if(S.hist.length>60)S.hist.shift();Object.keys(WIN).forEach(id=>{if(APPS[id].live)refreshApp(id)});hud()},1000);
+pushNews('Cyber insurers warn of rising incident costs');pushNews('Regulators promise tougher penalties for data brokers');
+hud();
+
+/* ---------- 3D room ---------- */
+const R=new THREE.WebGLRenderer({canvas:$('#c'),antialias:true}),sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(65,1,.1,50);
+sc.background=new THREE.Color(0x020605);sc.fog=new THREE.Fog(0x020605,3,12);cam.position.set(0,1.45,.5);
+const mat=(c,e)=>new THREE.MeshStandardMaterial({color:c,emissive:e||0,roughness:.8});
+function box(w,h,d,x,y,z,m){const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);b.position.set(x,y,z);sc.add(b);return b}
+box(8,.1,8,0,0,0,mat(0x0a0f0d));box(8,4,.1,0,2,-3,mat(0x0b1511));box(8,4,.1,0,2,3,mat(0x0b1511));box(.1,4,8,-4,2,0,mat(0x0b1511));box(.1,4,8,4,2,0,mat(0x0b1511));
+box(2.2,.08,1,0,.95,-.6,mat(0x2a1d14));[[-1,-.2],[1,-.2],[-1,-1],[1,-1]].forEach(l=>box(.08,.95,.08,l[0],.47,l[1],mat(0x1a120c)));
+box(.9,.05,.3,0,1,-.2,mat(0x111));box(.15,.2,.15,0,1.1,-.9,mat(0x111));
+const cv=document.createElement('canvas');cv.width=512;cv.height=320;const cx=cv.getContext('2d'),tex=new THREE.CanvasTexture(cv);
+const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.2,.75),new THREE.MeshBasicMaterial({map:tex}));scr.position.set(0,1.5,-.95);sc.add(scr);box(1.3,.85,.05,0,1.5,-.99,mat(0x050505));
+function scrDraw(){cx.fillStyle='#021008';cx.fillRect(0,0,512,320);cx.fillStyle='#33ff99';cx.font='bold 34px monospace';cx.fillText('NULLROUTE OS',110,70);cx.font='22px monospace';
+ cx.fillText('TRACE  '+S.trace+'%',150,140);cx.fillText('$'+S.$+'  BTC '+S.btc.toFixed(1),150,180);if(unread())cx.fillText('✉ '+unread()+' unread',150,220);if(Date.now()%1000<600)cx.fillText('> click to log in_',110,270);tex.needsUpdate=true}
+const rl=[];for(let i=0;i<3;i++){box(.8,2.2,.8,-3,1.1,-1.5+i*1.2,mat(0x101a16));for(let j=0;j<8;j++){const l=box(.05,.05,.02,-2.58,.4+j*.25,-1.5+i*1.2,mat(0,0x33ff99));rl.push(l)}}
+sc.add(new THREE.AmbientLight(0x224433,.8));const pl=new THREE.PointLight(0x33ff99,1.2,8);pl.position.set(0,1.6,-.3);sc.add(pl);
+const ray=new THREE.Raycaster(),mv=new THREE.Vector2();let yaw=0,pit=0,ty=0,tp=0;
+function size(){R.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}addEventListener('resize',size);size();
+function hit(e){mv.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);ray.setFromCamera(mv,cam);return ray.intersectObject(scr).length>0}
+addEventListener('mousemove',e=>{if($('#gui').style.display==='flex')return;ty=-(e.clientX/innerWidth-.5)*1.1;tp=-(e.clientY/innerHeight-.5)*.5;$('#c').style.cursor=hit(e)?'pointer':'default'});
+$('#c').addEventListener('click',e=>{if(S.over)return;if(hit(e)){$('#gui').style.display='flex';fitIcons();sfx('login');hum();$('#hint').style.display='none';if(!Object.keys(WIN).length)openApp('term');refresh();const i=$('#in');if(i)i.focus()}});
+function leave(){if($('#gui').style.display==='flex')sfx('logoff');$('#gui').style.display='none';$('#hint').style.display='block';$('#smenu').style.display='none';hum()}$('#x').onclick=leave;
+$('#snd').onclick=()=>{AU.on=!AU.on;AU.ok=true;$('#snd').textContent=AU.on?'🔊':'🔇';hum();sfx('click')};
+addEventListener('keydown',e=>{if(e.key==='Escape')leave()});
+setInterval(()=>{if(AU.ok&&$('#gui').style.display!=='flex'&&!S.over&&Math.random()<.6)tone(1800+Math.random()*1200,.03,'sine',.012)},900);
+(function loop(){requestAnimationFrame(loop);yaw+=(ty-yaw)*.08;pit+=(tp-pit)*.08;cam.rotation.set(pit,yaw,0,'YXZ');
+ rl.forEach(l=>l.material.emissive.setHex(Math.random()<.02?0:(S.trace>70?0xff3333:0x33ff99)));
+ pl.intensity=1+Math.sin(Date.now()/400)*.1;scrDraw();R.render(sc,cam)})();
+</script></body></html>
